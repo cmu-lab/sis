@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>マンデルブロ描画プログラムその3</title>
+<style type="text/css">
+<!--
+body,td,th {
+	color: #FFFFFF;
+}
+body {
+	background-color: #333333;
+}
+.style1 {font-family: "ＭＳ ゴシック", "Osaka－等幅"}
+-->
+</style></head>
+
+<body>
+<table width="80%" border="2" align="center" bordercolor="#FFFFFF">
+  <tr>
+    <td><div align="center">
+      <h3>&nbsp;</h3>
+      <h1>マンデルブロ描画プログラムその３</h1>
+      <p>（以下のプログラムをそのままコピー＆ペーストすればよい）</p>
+      <p>&nbsp;</p>
+    </div></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="80%" border="2" align="center" bordercolor="#FFFFFF">
+  <tr>
+    <td><blockquote>
+      <p><br>
+      </p>
+      <p><span class="src_singlelinecomment style1">//&nbsp;セットアップ部</span><span class="style1"><br>
+        void&nbsp;setup(){<br>
+        &nbsp;&nbsp;size(400,400);&nbsp;//400x400画素の描画窓を作成<br>
+        &nbsp;&nbsp;colorMode(HSB);&nbsp;//HSB色空間にセット<br>
+        &nbsp;&nbsp;background(0);&nbsp;//背景は黒にセット<br>
+        }<br>
+        <br>
+        //描画部<br>
+        void&nbsp;draw(){<br>
+        &nbsp;&nbsp;float&nbsp;a&nbsp;=&nbsp;-0.5;&nbsp;//座標x方向の定数項a&nbsp;<br>
+        &nbsp;&nbsp;float&nbsp;b&nbsp;=&nbsp;0.0;&nbsp;//座標x方向の定数項b&nbsp;<br>
+        &nbsp;&nbsp;float&nbsp;w&nbsp;=&nbsp;1.8;&nbsp;//倍率の設定<br>
+        &nbsp;&nbsp;<br>
+        &nbsp;&nbsp;int&nbsp;h&nbsp;=&nbsp;width&nbsp;/&nbsp;2;&nbsp;<br>
+        &nbsp;&nbsp;int&nbsp;n&nbsp;=&nbsp;50;&nbsp;//反復回数をセット<br>
+        &nbsp;&nbsp;int&nbsp;c;&nbsp;//カラー変数をセット<br>
+        &nbsp;&nbsp;<br>
+        &nbsp;&nbsp;int&nbsp;i,j,l;<br>
+        &nbsp;&nbsp;float&nbsp;x,&nbsp;y,&nbsp;zx,&nbsp;zy,&nbsp;u,&nbsp;v,&nbsp;mx;<br>
+        &nbsp;&nbsp;<br>
+        &nbsp;&nbsp;//&nbsp;各座標点について計算してゆく<br>
+        &nbsp;&nbsp;for(i=-h;&nbsp;i&lt;=h;&nbsp;i++){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u&nbsp;=&nbsp;(w&nbsp;*&nbsp;i&nbsp;/&nbsp;h)&nbsp;+&nbsp;a;&nbsp;//&nbsp;x座標を動かす<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(j=-h;&nbsp;j&lt;=h;&nbsp;j++){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;=&nbsp;(w&nbsp;*&nbsp;j&nbsp;/&nbsp;h)&nbsp;+&nbsp;b;&nbsp;//&nbsp;y座標を動かす<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&nbsp;0.0;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;=&nbsp;0.0;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(l=1;&nbsp;l&lt;=n;&nbsp;l++){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zx&nbsp;=&nbsp;x&nbsp;*&nbsp;x&nbsp;-&nbsp;y&nbsp;*&nbsp;y&nbsp;+&nbsp;u;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zy&nbsp;=&nbsp;2&nbsp;*&nbsp;x&nbsp;*&nbsp;y&nbsp;+&nbsp;v;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&nbsp;zx;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;=&nbsp;zy;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mx&nbsp;=&nbsp;x&nbsp;*&nbsp;x&nbsp;+&nbsp;y&nbsp;*&nbsp;y;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(mx&nbsp;&gt;=&nbsp;10.0){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;&nbsp;//&nbsp;mxが10以上になったら発散と判定<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//発散のスピードが速ければ&nbsp;カラー変数&nbsp;cの値は小さくなる<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;=&nbsp;int&nbsp;(256&nbsp;*&nbsp;l&nbsp;/&nbsp;n);&nbsp;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stroke(c,&nbsp;256,&nbsp;256);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;point(200+i,&nbsp;200-j);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        
+        
+      </span></p>
+    </blockquote>      <p class="style1">&nbsp;</p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

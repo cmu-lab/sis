@@ -1,0 +1,1238 @@
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.428571; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; border-right-style: none; border-right-color: currentcolor; background-color: inherit; }
+.CodeMirror-linenumber { -webkit-user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: medium; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; border-bottom-style: none; border-bottom-color: currentcolor; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: medium; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.428571rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left-width: 0.25em; border-left-style: solid; border-left-color: rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.mac-os #write{
+    caret-color: AccentColor;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+ @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
+</style>
+<title>test1</title>
+<!-- Compiled and minified CSS -->
+<!-- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+-->
+  <!-- Compiled and minified JavaScript -->
+  <!-- 
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+       -->
+
+</head>
+<body class='typora-export'>
+  <div class='typora-export-content'>
+    &lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN” “http://www.w3.org/TR/html4/loose.dtd”&gt;
+    <html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>
+    第2回課題のページ
+    </title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+    <!--
+    .style1 {font-family: "ＭＳ ゴシック", "Osaka−等幅"}
+    .style26 {color: #333333}
+    -->
+    </style>
+    </head>
+    <style type="text/css">
+    <!--
+    span{ line-height: 150%; } 
+    -->
+    div.contentsbox
+    {
+        border-style: solid;
+        border-width: 1px 2px 2px 1px;
+        border-color: #c0c0c0 #808080 #808080 #c0c0c0;
+        padding: 0.5em;
+        width: 400px;
+    }
+    .style22 {color: #FF0000}
+    .style23 {
+        color: #0000FF
+    }
+    .style25 {color: #0000FF; font-weight: bold; }
+    </style>
+    <body>
+    <div id="head">
+    <h1 align="center" class="style1">
+    <span class="contentsbox">第2回： フラクタル　</span>(2nd week : Fractal)
+    </h1>
+    </div>
+    <!-- head -->
+    <div id="main">
+    <table width="600" border="1" align="center">
+    <tr>
+    <td>
+    <blockquote>
+    <p>
+     
+    </p>
+    <p>
+    <strong>■重要■レポートの提出方法について</strong>
+    </p>
+    <p>
+    今年度はManabaを使って提出してもらいます．
+    </p>
+    <p>
+    第2回のレポート提出期限は演習1については<span class="style22">2023年04月27日17:00</span>まで。そのほかは、 <span class="style22">2022年05月08日 15:00</span> まで。
+    </p>
+    <p>
+    必修課題は全部で3つ（演習1から演習4）。ボーナス課題は1つ（演習5）。
+    </p>
+    <blockquote>
+    <p>
+    演習1: フラクタルを考慮した画像の撮影の実践　(3点)　<span class="style22">＊提出期限 04月27日 17:00＊</span>
+    </p>
+    <p>
+    演習2: フラクタルの応用を考える（3点）
+    </p>
+    <p>
+    演習3: コッホ曲線の作成と描画時間の計測（3点）
+    </p>
+    <p>
+    演習4: マンデルブロ集合の描画（3点）
+    </p>
+    <p>
+    演習5:（ボーナス）　中点変位法の実装（3点）
+    </p>
+    <p>
+    おまけ: マンデルブロ集合のムービー作成（余裕のある人やってみましょう！）
+    </p>
+    </blockquote>
+    <p>
+    <strong>(for English) ■Important!■ How to submit your report*</strong>
+    </p>
+    <p>
+    You should submit your report by using ‘Manaba’ system, and the deadline of EX1 is <span class="style22">2022/04/27 17:00</span>. The deadline of others is <span class="style22">2022/05/08 15:00</span>
+    </p>
+    <p>
+    You must solve the exercises (ex.1 - ex. 4), and if you want, you can solve the supplementary exercises (ex. 5).
+    </p>
+    <blockquote>
+    <p>
+    ex.1: To take the picture with golden ratio (3 points) <span class="style22">2022/05/08 15:00</span>
+    </p>
+    <p>
+    ex.2: To consider the applications of fractal (3points)
+    </p>
+    <p>
+    ex. 3: To draw Koch curve and measure the process time <strong> (3 points)</strong>
+    </p>
+    <p>
+    ex. 4: To draw Mandelbrot set (3 points)
+    </p>
+    <p>
+    ex. 5: (supplementary)　mid-point method implementation (3 points)
+    </p>
+    <p>
+     
+    </p>
+    </blockquote>
+    </blockquote>
+    </td>
+    </tr>
+    </table>
+    <br>
+    <table width="600" border="1" align="center">
+    <tr>
+    <td>
+    <blockquote>
+    <p>
+     
+    </p>
+    <p>
+    <strong>■授業の資料■</strong> [Lecture materials]
+    </p>
+    <p align="center">
+    <a href="./2nd_SIS_class_20230422_web.pdf">第2回： フラクタル　[2nd class fractal]</a>
+    </p>
+    <p align="center">
+    ※ファイルサイズが大きいです。注意してください。
+    </p>
+    <p align="center">
+     
+    </p>
+    <p align="center">
+    <a href="fractal.zip">授業中に紹介したフラクタルの画像たち（200MB）</a>
+    </p>
+    <p align="center">
+    <a href="fractal.zip">[Here is the fractal images introduceted in my class </a>(approximately 200MB)]
+    </p>
+    <p align="center">
+     
+    </p>
+    <p>
+     
+    </p>
+    </blockquote>
+    </td>
+    </tr>
+    </table>
+    <div data-align="center">
+
+    </div>
+    <p>
+     
+    </p>
+    <table width="600" border="1" align="center">
+    <tr>
+    <td>
+    <p>
+     
+    </p>
+    <pre><code>      &lt;blockquote&gt;
+        &lt;p&gt;&lt;strong&gt;■演習1&lt;/strong&gt;&lt;span class=&quot;style25&quot;&gt; [3点]　&lt;/span&gt;フラクタルを考慮した画像の撮影の実践&lt;/p&gt;
+        &lt;p&gt;自分の好きな対象（人物，静物，植物，なんでもOK）について&lt;br&gt;
+          &lt;/p&gt;
+        &lt;blockquote&gt;
+          &lt;p&gt;1. 黄金比を考慮しないで撮影した画像　&lt;br&gt;
+            2. 黄金比を考慮して撮影した画像&lt;br&gt;
+            3. 2.について、具体的に工夫したところ&lt;br&gt;
+          　をテキストで説明&lt;/p&gt;
+        &lt;/blockquote&gt;
+        &lt;p&gt;をppt1枚にまとめ提出せよ．サンプルはこちら （&lt;a href=&quot;kadai_1/sample_ppt.pdf&quot;&gt;PDF&lt;/a&gt;) &lt;/p&gt;
+        &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;■Ex.1&lt;/strong&gt; [3 points] Practice to take image related to fractal&lt;/p&gt;
+        &lt;p&gt;Any target (human, plants, animals,) is OK&lt;/p&gt;
+        &lt;blockquote&gt;
+          &lt;p&gt;1. Take picture that is not considered golden ratio&lt;/p&gt;
+          &lt;p&gt;2. Take picture that is considered golden ratio&lt;/p&gt;
+          &lt;p&gt;3.  Add explanation how to consider golden retio when you did.&lt;/p&gt;
+        &lt;/blockquote&gt;
+        &lt;p&gt;Please make the ppt (1pages) includes the above three contents. &lt;/p&gt;
+        &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+      &lt;/blockquote&gt;&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+    </table>
+    <p>
+     
+    </p>
+    <table width="600" border="1" align="center">
+    <tr>
+    <td>
+    <p>
+     
+    </p>
+    <pre><code>    &lt;blockquote&gt;
+      &lt;p&gt;&lt;strong&gt;■演習2&lt;/strong&gt;&lt;span class=&quot;style25&quot;&gt; [3点]　&lt;/span&gt;フラクタルの応用を考える&lt;/p&gt;
+      &lt;p&gt;フラクタルを利用した応用（サービス、デバイスなんでもOK）を、自分なりに考えて、もしそれが実現できたら世の中がどのような変わるのかを含めて、300文字から500文字程度で記述しなさい。&lt;/p&gt;
+      &lt;p&gt;　例：　フラクタルマイク・・・カラオケで利用すれば、どんな人も上手に聴こえる。電話のやりとりにおいても、相手の声が心地よく聴こえる。&lt;/p&gt;
+      &lt;p class=&quot;style22&quot;&gt;＊＊初回の授業でも言及しましたが、スマートインフォメディアの授業で育成したい人材は「ひらめいたら、すぐに実行する人」です。ここで思いついたアイデア、ぜひ実装しましょうね！&lt;/p&gt;
+      &lt;p&gt;&amp;nbsp;&lt;/p&gt;</code></pre>
+    <p>
+    <strong>■Ex.2</strong> [3 points] Application of fractal
+    </p>
+    <pre><code>      &lt;p&gt;Consder your own application based on fractal (e.g., service, device) and mention about how to change the world by your idea (arround 100-200 words) &lt;/p&gt;
+      &lt;p&gt; Ex. fractal mike ... of course anyone can sing very well by using this kind of mike. &lt;/p&gt;
+      &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+      &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+    &lt;/blockquote&gt;&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+    </table>
+    <p>
+     
+    </p>
+    <p>
+     
+    </p>
+    <div id="right">
+    <!-- 本文 -->
+    <div class="title">
+    <pre><code>&lt;h2 class=&quot;style1 style1&quot;&gt;1.Processingでフラクタルを感じる&lt;/h2&gt;</code></pre>
+    </div>
+    </div>
+    <p><br> <br></p>
+    <p>
+     
+    </p>
+    <p>
+    <p>この授業では Processing というプログラミング言語を使って学習を進めます。Processingは、JAVAをベースにしたデザイナーやアーティスト向けの手軽な開発環境であり、MITメディアラボでプログラミング教育用に作られたDesign By Numbers にその起源があります。Design By Numbers は表現力が限られており、より高度な表現を可能にするために登場したのが、Processing です。</p>
+    <pre><code>理系の学生さんならば、Processingに登場するコマンド群になじみがあり、すぐに使いこなすことができるようになると思います。&lt;/p&gt;</code></pre>
+    <p>
+     
+    </p>
+    <table width="600" border="1" align="center" cellspacing="0">
+    <tr>
+    <td>
+    <blockquote>
+    <p>
+     
+    </p>
+    <p>
+    <strong>■準備 </strong>
+    </p>
+    <p class="style17">
+    Processing は
+    </p>
+    <p>
+    <a href="https://processing.org/download/">https://processing.org/download/</a>
+    </p>
+    <p class="style17">
+    からダウンロードすることができます。
+    </p>
+    <p class="style17">
+    <span class="style22">＊注: Processing のバージョンは、「4.3」以上を使ってください。サンプルプログラムの動作テストは Processing 4.3で行われています。</span>
+    </p>
+    <p>
+    <strong>■preparation </strong>
+    </p>
+    <p>
+    Please download the current version of Processing from the following URL.
+    </p>
+    <p>
+    <a href="https://processing.org/download/">https://processing.org/download/</a>
+    </p>
+    <p class="style17">
+    <span class="style22">*Note: Please use version “4.3” or higher. Sample codes are tested on 4.3.</span>
+    </p>
+    <p>
+     
+    </p>
+    </blockquote>
+    </td>
+    </tr>
+    </table>
+    <p>
+     
+    </p>
+    <pre><code>&lt;p&gt;&lt;strong&gt;■とにかくやってみよう！&lt;/strong&gt; (Do it anyway!)&lt;/p&gt;
+&lt;p&gt;インストールが完了したら、以下の&lt;span class=&quot;style15&quot;&gt;レベル１、２、３&lt;/span&gt;に従い、サンプルプログラムをひたすら打ち込んで、Processing に慣れてください。&lt;/p&gt;</code></pre>
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <a href="level_1/level_1.html" target="_blank"><strong>■レベル１ </strong>エディタの使い方、描画窓、点や線の書き方</a>
+    </td>
+    </tr>
+    </table>
+    <br>
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <a href="level_2/level_2.html" target="_blank"> <strong>■レベル２　</strong>色々な図形の描画および色指定の方法</a>
+    </td>
+    </tr>
+    </table>
+    <br>
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <a href="level_3/level_3.html" target="_blank"><strong>■レベル３　</strong>変数の取り扱い、ループ制御</a>
+    </td>
+    </tr>
+    </table>
+    <br>
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <a href="level_4/level_4.html" target="_blank"><strong>■レベル４　</strong>構造化プログラミング</a>
+    </td>
+    </tr>
+    </table>
+    <p>
+     
+    </p>
+    <p>
+    以上、Processingの取扱いには慣れてきたでしょうか？
+    </p>
+    <p>
+    Processingの各種コマンド等に関する参考ページが以下にありますので、そちらを参考にするとよいでしょう。
+    </p>
+    <p>
+    <a href="http://processing.org/reference/index.html" target="_blank">リファレンス(Reference)</a>
+    </p>
+    <p>
+     
+    </p>
+    <div id="right">
+    <!-- 本文 -->
+    <div class="title">
+    <pre><code>&lt;h2 class=&quot;style1 style1&quot;&gt;2. [演習3]コッホ曲線を描いてみよう (drawing the Koch curve)&lt;/h2&gt;</code></pre>
+    </div>
+    </div>
+    <p>
+     
+    </p>
+    <p>
+    <p><br></p>
+    </p>
+    <table width="600" border="1" align="center" cellspacing="0">
+    <tr>
+    <td>
+    <blockquote>
+    <p>
+     
+    </p>
+    <p>
+    授業でも登場したコッホ曲線を描いてみましょう。実は、コッホ曲線を描画するプログラムは、Processinのサンプルプログラムとして提供されており、以下のプログラムは、それを拝借したものです。
+    <p>
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <div data-align="center">
+    <a href="Koch/Koch.pde" target="_blank">コッホ曲線の描画プログラム</a>
+    </div>
+    </td>
+    </tr>
+    </table>
+    <p>
+    <!-- 本文 -->
+    <p>
+    The following program is to draw the Koch curve mentioned in my class. Actually, this program is one of the sample programs of Processing.
+    <p>
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <div data-align="center">
+    <a href="Koch/Koch.pde">Koch Curve Drawing</a>
+    </div>
+    </td>
+    </tr>
+    </table>
+    <p>
+     
+    </p>
+    <p>
+    <strong>■演習3</strong><span class="style25"> [3点]　</span>コッホ曲線の描画
+    </p>
+    <p>
+    <ol type="1">
+    <li>上記のプログラムを参考にして、自分のパソコンの壁紙サイズのコッホ曲線を描くように改良してください。また描画の色なども変更して、カラフルなものにしてみてください。
+    </p>
+    <p>
+    <ol start="2" type="1">
+    <li>1)で作成した画像を、自分のパソコンの壁紙に設定し、そのスクリーンショットしたものを提出してください。つまり提出するものは、スクリーンショット1枚です。
+    </p>
+    <p>
+    <strong>■Ex.3</strong> [3 points] Koch Curve Drawing
+    </p>
+    <p>
+    <ol type="1">
+    <li>By using the above program, please make more bigger size koch image like your computer screen, and change the color (select your favorite color)
+    </p>
+    <p>
+    <ol start="2" type="1">
+    <li>Do the print screen and submit the captured image.
+    </p>
+    <p>
+     
+    </p>
+    <p>
+     
+    </p>
+    <p>
+     
+    </p></li>
+    </ol></li>
+    </ol>
+    </blockquote>
+    </td>
+    </tr>
+    </table></li>
+    </ol></li>
+    </ol>
+    <br>
+    <p>
+    <p>
+    <div id="right">
+    <pre><code>&lt;div class=&quot;title&quot;&gt;
+&lt;h2 class=&quot;style1 style1&quot;&gt;3. 演習4 マンデルブロ集合の描画&lt;/h2&gt;</code></pre>
+    </div>
+    </div>
+    <p>
+    <br> <br>
+    </p>
+    <p>
+    <strong>■ マンデルブロ集合を描画してみよう </strong>
+    </p>
+    <p>
+    フラクタル図形の中でも、マンデルブロによって作り出されたマンデルブロ集合は非常に有名です。この集合は、非常に簡単な数式で記述されているにもかかわらず、生成される図形は、まるで<span class="style22">宇宙</span>のような豊かな構造を持っています。まずは、以下のパワーポイントで、マンデルブロ集合についてよく理解した後、プログラムを咀嚼してみてください。わからない場合は、友達同士で相談しながら理解を深めてください。<br />
+
+    <p>
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <div class="style23" data-align="center">
+    <a href="mandel.pdf" target="_blank">マンデルブロ集合の数理(PDFファイル)</a>
+    </div>
+    </td>
+    </tr>
+    </table>
+    <p>
+    さて、上の資料を読んで、理解できましたか？十分理解できていなくても、以下のプログラムを動かせば理解できるようになるかもしれません。まずはプログラムを動かしてみましょう。またプログラム中に、どのように動いているのかのコメントを書いておきましたので、そちらをよく読めば、きっと理解できると思います。がんばってください。
+    <p>
+    The following program is to draw the Mandelbrot set. Please try to understand how does it work.
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <div align="center">
+    <pre><code>    &lt;p&gt;&lt;a href=&quot;mandel/mandel1.html&quot; target=&quot;_blank&quot;&gt;マンデルブロ集合描画プログラムその1&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;mandel/mandel1.html&quot;&gt;Mandelbrot set drawing (ver. 1)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+    </table>
+    <p>
+    <strong>[実行結果 (results of program ver.1)] </strong>
+    </p>
+    <p align="center">
+    <img src="mandel/mandel1.jpg" width="404" height="427">
+    </p>
+    <p>
+    実行結果を見て、感動しましたか？
+    </p>
+    <p>
+     
+    </p>
+    <p>
+    以下、マンデルブロ集合描画プログラムその1を改良し、カラフルにしたものを置いておきます。それぞれ実行してみてください。
+    </p>
+    <p>
+     
+    </p>
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <div align="center">
+    <pre><code>    &lt;p&gt;&lt;a href=&quot;mandel/mandel2.html&quot; target=&quot;_blank&quot;&gt;マンデルブロ集合描画プログラムその2&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;mandel/mandel2.html&quot;&gt;Mandelbrot set drawing (ver. 2)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+    </table>
+    <p>
+     
+    </p>
+    <table width="350" border="1" align="center">
+    <tr>
+    <td>
+    <div align="center">
+    <pre><code>    &lt;p&gt;&lt;a href=&quot;mandel/mandel3.html&quot; target=&quot;_blank&quot;&gt;マンデルブロ集合描画プログラムその3&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;mandel/mandel3.html&quot;&gt;Mandelbrot set drawing (ver. 3)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+    </table>
+    <p>
+     
+    </p>
+    <p>
+    <strong>[実行結果 (results of program ver.2 and 3)] </strong>
+    </p>
+    <p align="center">
+    <p><img src="mandel/mandel2.jpg" width="200" height="200"> 　　 <img src="mandel/mandel3.jpg" width="200" height="199">　</p>
+    <p>
+    左図は「マンデルブロ集合描画プログラムその２」から、右図は「マンデルブロ集合描画プログラムその３」から得られると思います。
+    <p>
+    <table width="600" border="1" align="center">
+    <tr>
+    <td>
+    <blockquote>
+    <p>
+     
+    </p>
+    <p>
+    <strong>■演習4 <span class="style23">[3点]</span> </strong>マンデルブロ集合は、色々な部分（特に縁の部分）を拡大してみると、全く別の様相を観測することができる。自分なりに、マンデルブロ集合を探検してみよう。たとえば、パラメータを
+    </p>
+    </blockquote>
+    <pre><code>  &lt;p align=&quot;center&quot;&gt;a = -0.745427、b = 0.113009、w = 0.00001 &lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;に設定し、描画部分を少し修正した以下のプログラムを描画するとどうなるだろうか？（以下のプログラムでは、上記のパラメータに設定しております。）&lt;/p&gt;
+    &lt;table width=&quot;350&quot; border=&quot;1&quot; align=&quot;center&quot;&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;div align=&quot;center&quot;&gt;&lt;a href=&quot;mandel/mandel4.html&quot; target=&quot;_blank&quot;&gt;マンデルブロ集合描画プログラムその4&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;p&gt;実行結果の画像を、Word等に貼り付けて提出せよ。　&lt;/p&gt;
+    &lt;p&gt;上記のパラメータの組み合わせ以外にも、色々と調整することで不思議な構造が見えてくる。自分なりに最低3種類のパラメータの組み合わせを発見し、レポートに結果の画像を貼り付けて提出せよ。&lt;span class=&quot;style22&quot;&gt;（※もし、興味深いパラメータの組み合わせを見つけることができない場合、このページの一番下にあるパラメータ調整プログラムを使ってみるとよいでしょう。）&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;■ex.3 [2 points] &lt;/strong&gt;With respect to MandelBort set, we can recognize various images when we focus on (especially) edges of the set. Please set the parameters as &lt;/p&gt;
+    &lt;blockquote&gt;
+      &lt;blockquote&gt;
+        &lt;blockquote&gt;
+          &lt;p&gt;a = -0.745427、b = 0.113009、w = 0.00001 &lt;/p&gt;
+          &lt;/blockquote&gt;
+      &lt;/blockquote&gt;
+      &lt;/blockquote&gt;
+    &lt;p&gt;and the run the follwoing program &lt;/p&gt;
+    &lt;table width=&quot;350&quot; border=&quot;1&quot; align=&quot;center&quot;&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;div align=&quot;center&quot;&gt;&lt;a href=&quot;mandel/mandel4.html&quot; target=&quot;_blank&quot;&gt;Mandelbrot set drawing (ver. 4) &lt;/a&gt;&lt;/div&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;p&gt;Please find different images generated by various parameters and please paste your favorite at least three images to word file as the report. &lt;/p&gt;
+    &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+  &lt;/blockquote&gt;&lt;/td&gt;</code></pre>
+    </tr>
+    </table>
+    <br>
+    <div id="right">
+    <pre><code>&lt;div class=&quot;title&quot;&gt;
+&lt;h2 class=&quot;style1 style1&quot;&gt;ボーナス課題とおまけ&lt;/h2&gt;</code></pre>
+    </div>
+    </div>
+    <p>
+     
+    </p>
+    <p>
+     
+    </p>
+    <table width="600" border="1" align="center">
+    <tr>
+    <td>
+    <p>
+     
+    </p>
+    <pre><code>   &lt;blockquote&gt;
+     &lt;p&gt;&lt;strong&gt;■演習5（ボーナス課題）&lt;/strong&gt; &lt;span class=&quot;style23&quot;&gt;&lt;strong&gt;[3点]&lt;/strong&gt;&lt;/span&gt;　&lt;strong&gt;中点変位法の実装&lt;/strong&gt;&lt;/p&gt;
+     &lt;p&gt;(Ex.5 [3 points] mid-point method implementation)&lt;/p&gt;
+     &lt;p&gt;中点変位法による2次元の山並みを描画するプログラムを実装する前に，ちょっと準備をしてもらいます．以下の「controlP5」というライブラリをProcessingのライブラリにインストールしてください．バージョンは、2.2.6をインストールしてください。&lt;/p&gt;
+     &lt;p&gt;(To draw the mountain view by mid-point method, you need to install the following controlP5. )&lt;/p&gt;
+     &lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.sojamo.de/libraries/controlP5/&quot;&gt;■controlP5■&lt;/a&gt;         &lt;/p&gt;
+     &lt;blockquote&gt;
+       &lt;p align=&quot;left&quot;&gt;&lt;strong&gt;■インストール手順&lt;/strong&gt;&lt;/p&gt;
+       &lt;p align=&quot;left&quot;&gt;1. Processingの「スケッチ」メニューを開き、「ライブラリをインポート」を選び、「Manage Libraries」を選択。&lt;/p&gt;
+       &lt;p align=&quot;left&quot;&gt;ControlP5を検索して選択し、Installを押す。&lt;/p&gt;
+     &lt;/blockquote&gt;
+     &lt;p align=&quot;left&quot;&gt;controlP5は，GUIのライブラリで，今後，皆さんのコンテンツを格好良くするツールとして非常に役に立つと思いますので，ぜひ一度，参考ページを読みながら勉強してみてください．&lt;/p&gt;
+     &lt;p align=&quot;left&quot;&gt;以下に中点変位法のサンプルプログラムを準備したので，まずはこれを実行してみてください．&lt;/p&gt;
+     &lt;table width=&quot;350&quot; border=&quot;1&quot; align=&quot;center&quot;&gt;
+       &lt;tr&gt;
+         &lt;td&gt;&lt;div align=&quot;center&quot; class=&quot;style23&quot;&gt;
+           &lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;midpoint/midpoint.pde&quot;&gt;■　中点変位法プログラム　■&lt;/a&gt;                
+           &lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;midpoint/midpoint.pde&quot;&gt;(mid-point method program)               &lt;/a&gt;               
+         &lt;/div&gt;&lt;/td&gt;
+       &lt;/tr&gt;
+     &lt;/table&gt;
+     &lt;p&gt;このプログラムは，データ構造が少し複雑になっているので，どのように機能しているのかを理解するのは難しいかもしれません．その場合は，まあ，こんなものだろうと納得して演習に進んでもらって結構です．&lt;/p&gt;
+     &lt;p class=&quot;style22&quot;&gt;&lt;strong&gt;＊ここから演習＊&lt;/strong&gt; (Here is the explanation of exercise)&lt;/p&gt;
+     &lt;p&gt;上記の中点変位法のプログラムにおいて，冒頭部の変数「MAX_DEPTH」等を変化させることで，反復回数やJITTERを変化させることができます．反復回数の上限を変化させ，20回反復させた画像をキャプチャし，ワード等に貼り付けて提出しなさい．&lt;/p&gt;
+     &lt;p&gt;(By using the above program, the parameters &amp;quot;MAX_DEPTH&amp;quot; etc, you can adjust the iteration number or JITTER. Please report the results under the condition 20 iterations.)&lt;/p&gt;
+     &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+   &lt;/blockquote&gt;
+   &lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/td&gt;</code></pre>
+    </tr>
+    </table>
+    <p>
+    <br>
+    </p>
+    <hr>
+    <p>
+     
+    </p>
+    <p>
+    Copyright © Hajime Nobuhara, All Rights Reserved.
+    </p>
+    <p>Last modified: <!-- #BeginDate format:IS1a -->2019-04-23 5:58 pm<!-- #EndDate --></p>
+    <p>
+    <p>
+    <p>
+    <p>
+    <p>
+    <p>
+    <p>
+    <p>
+    <p>
+    </p>
+    </div>
+    </body>
+    </html>
+    <!-- Copyright (C) Net Mania. All Rights Reserved. http://www.netmania.jp/ -->
+  </div>
+</body>
