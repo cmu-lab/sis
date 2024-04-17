@@ -95,7 +95,7 @@ Processingの各種コマンド等に関する参考ページが以下にあり�
 授業でも登場したコッホ曲線を描いてみましょう。実は、コッホ曲線を描画するプログラムは、Processingのサンプルプログラムとして提供されており、以下のプログラムは、それを拝借したものです。
 
 
-**<a href="./Koch/Koch.pde" target="_blank">コッホ曲線の描画プログラム</a>**
+**<a href="./Koch/Koch.txt" target="_blank">コッホ曲線の描画プログラム</a>**
 
 
 
@@ -128,7 +128,7 @@ Processingの各種コマンド等に関する参考ページが以下にあり�
 
 
 
-<a href="./mandel/mandel1.pde" target="_blank">マンデルブロ集合描画プログラムその1</a>
+<a href="./mandel/mandel1.txt" target="_blank">マンデルブロ集合描画プログラムその1</a>
 
 
 
@@ -138,8 +138,8 @@ Processingの各種コマンド等に関する参考ページが以下にあり�
 
 
 
-<a href="./mandel/mandel2.pde" target="_blank">マンデルブロ集合描画プログラムその2</a>
-<a href="./mandel/mandel3.pde" target="_blank">マンデルブロ集合描画プログラムその3</a>
+<a href="./mandel/mandel2.txt" target="_blank">マンデルブロ集合描画プログラムその2</a>
+<a href="./mandel/mandel3.txt" target="_blank">マンデルブロ集合描画プログラムその3</a>
 
 
 
@@ -167,7 +167,7 @@ Processingの各種コマンド等に関する参考ページが以下にあり�
 
 （以下のプログラムでは、上記のパラメータに設定しております。）
 
-<a href="./mandel/mandel4.pde" target="_blank">マンデルブロ集合描画プログラムその4</a>
+<a href="./mandel/mandel4.txt" target="_blank">マンデルブロ集合描画プログラムその4</a>
 
 実行結果の画像を、Word等に貼り付けて提出せよ。
 
@@ -204,7 +204,7 @@ ControlP5は、GUIのライブラリで、今後、皆さんのコンテンツ�
 
 
 
-<a href="./midpoint/midpoint.pde" target="_blank">中点変位法プログラム</a>
+<a href="./midpoint/midpoint.txt" target="_blank">中点変位法プログラム</a>
 
   
 
