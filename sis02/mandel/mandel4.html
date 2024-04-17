@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>マンデルブロ描画プログラムその4</title>
+<style type="text/css">
+<!--
+body,td,th {
+	color: #FFFFFF;
+}
+body {
+	background-color: #333333;
+}
+.style1 {font-family: "ＭＳ ゴシック", "Osaka－等幅"}
+-->
+</style></head>
+
+<body>
+<table width="80%" border="2" align="center" bordercolor="#FFFFFF">
+  <tr>
+    <td><div align="center">
+      <h3>&nbsp;</h3>
+      <h1>マンデルブロ描画プログラムその４</h1>
+      <p>（以下のプログラムをそのままコピー＆ペーストすればよい）</p>
+      <p>&nbsp;</p>
+    </div></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="80%" border="2" align="center" bordercolor="#FFFFFF">
+  <tr>
+    <td><blockquote>
+      <p class="style1"><br>
+          <span class="style1"><br>
+            
+          <span class="src_keyword">void</span>&nbsp;setup(){<br>
+          &nbsp;&nbsp;size(<span class="src_digit">400</span>,<span class="src_digit">400</span>);<br>
+          &nbsp;&nbsp;colorMode(RGB,<span class="src_digit">512</span>);<br>
+          &nbsp;&nbsp;background(<span class="src_digit">0</span>);<br>
+          <br>
+          }<br>
+          <br>
+          <span class="src_keyword">void</span>&nbsp;draw(){<br>
+          &nbsp;&nbsp;<span class="src_typekeyword">float</span>&nbsp;a&nbsp;=&nbsp;-<span class="src_digit">0.745427</span>;<br>
+          &nbsp;&nbsp;<span class="src_typekeyword">float</span>&nbsp;b&nbsp;=&nbsp;<span class="src_digit">0.113009</span>;<br>
+          &nbsp;&nbsp;<span class="src_typekeyword">float</span>&nbsp;w&nbsp;=&nbsp;<span class="src_digit">0.00001</span>;<br>
+          &nbsp;&nbsp;<br>
+          &nbsp;&nbsp;<span class="src_typekeyword">int</span>&nbsp;h&nbsp;=&nbsp;width&nbsp;/&nbsp;<span class="src_digit">2</span>;<br>
+          &nbsp;&nbsp;<span class="src_typekeyword">int</span>&nbsp;n&nbsp;=&nbsp;<span class="src_digit">1024</span>;<br>
+          &nbsp;&nbsp;<span class="src_typekeyword">int</span>&nbsp;c;<br>
+          &nbsp;&nbsp;<br>
+          &nbsp;&nbsp;<span class="src_typekeyword">int</span>&nbsp;i,j,l,cc;<br>
+          &nbsp;&nbsp;<span class="src_typekeyword">float</span>&nbsp;x,&nbsp;y,&nbsp;zx,&nbsp;zy,&nbsp;u,&nbsp;v,&nbsp;mx;<br>
+          &nbsp;&nbsp;<br>
+          &nbsp;&nbsp;<span class="src_keyword">for</span>(i=-h;&nbsp;i&lt;=h;&nbsp;i++){<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u&nbsp;=&nbsp;(w&nbsp;*&nbsp;i&nbsp;/&nbsp;h)&nbsp;+&nbsp;a;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src_keyword">for</span>(j=-h;&nbsp;j&lt;=h;&nbsp;j++){<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;=&nbsp;(w&nbsp;*&nbsp;j&nbsp;/&nbsp;h)&nbsp;+&nbsp;b;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&nbsp;<span class="src_digit">0.0</span>;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;=&nbsp;<span class="src_digit">0.0</span>;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src_keyword">for</span>(l=<span class="src_digit">1</span>;&nbsp;l&lt;=n;&nbsp;l++){<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zx&nbsp;=&nbsp;x&nbsp;*&nbsp;x&nbsp;-&nbsp;y&nbsp;*&nbsp;y&nbsp;+&nbsp;u;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zy&nbsp;=&nbsp;<span class="src_digit">2</span>&nbsp;*&nbsp;x&nbsp;*&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;v;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&nbsp;zx;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;=&nbsp;zy;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mx&nbsp;=&nbsp;x&nbsp;*&nbsp;x&nbsp;+&nbsp;y&nbsp;*&nbsp;y;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src_keyword">if</span>&nbsp;(mx&nbsp;&gt;=&nbsp;<span class="src_digit">10.0</span>){<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src_keyword">break</span>;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;=&nbsp;<span class="src_typekeyword">int</span>&nbsp;(<span class="src_digit">512</span>&nbsp;*&nbsp;l&nbsp;/&nbsp;n);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stroke(c&nbsp;*&nbsp;<span class="src_digit">2</span>,&nbsp;c&nbsp;+&nbsp;<span class="src_digit">100</span>&nbsp;,&nbsp;c&nbsp;+&nbsp;<span class="src_digit">100</span>&nbsp;);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;point(<span class="src_digit">200</span>+i,&nbsp;<span class="src_digit">200</span>-j);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+          &nbsp;&nbsp;}<br>
+          }<br>
+          </span></p>
+      <p class="style1 style1">&nbsp;</p>
+    </blockquote></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>
