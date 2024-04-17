@@ -28,7 +28,7 @@
 ## 授業の資料
 
 - <a href="./2nd_SIS_class_20230422_web.pdf" target="_blank">第2回：フラクタル</a>(ファイルサイズが大きいです。注意してください。)
-- <a href="./fractal.zip" target="_blank">授業中に紹介したフラクタルの画像たち（200MB）</a>
+- <a href="https://drive.google.com/file/d/1AEx58WvD1flVqVHVqzZG-ZCUpu4e5kmj/view?usp=sharing" target="_blank">授業中に紹介したフラクタルの画像たち（200MB）</a>
 
 
 
