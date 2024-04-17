@@ -1,0 +1,131 @@
+body {
+	font-family:"MS UI Gothic","MS PGothic","Osaka";
+	text-align: center;
+	line-height: 150%;
+	font-size: 12px;
+	color: #333333;
+	margin:0px 0px 0px 0px;
+}
+
+a:link {
+	color: #2839B5;
+	text-decoration: underline;
+}
+a:visited {
+	color: #2839B5E;
+	text-decoration: none;
+}
+a:hover {
+	color: #FF0000;
+	text-decoration: underline;
+}
+
+
+#head {
+	width:730px;
+	text-align: left;
+	margin:0 auto 10px auto;
+	background:#EFEFEF;
+	border-color:#CCCCCC;
+	border-width:0 1px 1px 1px;
+	border-style:solid;
+	}
+	
+#head h1 {
+	padding:30px;
+	margin:0px;
+	font-size:20px;
+	color:#0518A4;
+	font-family: Osaka,Verdana,Arial,Helvetica,sans-serif;
+}
+
+#main {
+	width:690px;
+	text-align: left;
+	height:auto;
+	margin-top: 1px;
+	margin-right: auto;
+	margin-bottom: 1px;
+	margin-left: auto;
+	padding-top: 15px;
+	padding-right: 20px;
+	padding-bottom: 15px;
+	padding-left: 20px;
+	border: thin solid #CCCCCC;
+	position: relative;
+}
+
+#foot {
+	width:730px;
+	text-align: center;
+	font-size:10px;
+	padding: 10px;
+	height:16px;
+	margin:0 auto 0 auto;
+	background:#EFEFEF;
+	border-color:#CCCCCC;
+	border-width:1px 0px 0px 0px;
+	border-style:solid;
+	font-family: Osaka,Verdana,Arial,Helvetica,sans-serif;
+}
+
+#left {
+	width:170px;
+	float:left;
+	margin:0 0 0 3px;
+	padding:0;
+}
+
+
+#left ul {
+	padding: 0px;
+	margin: 0px;
+	list-style:none;
+}
+#left li {
+	border-color:#cccccc;
+	border-width:0 0 1px 0;
+	border-style:solid;
+	margin: 0px 0px 2px 0px;
+	padding:4px 0 4px 5px;
+}
+#left li a {
+	padding:1px 0px 1px 10px;
+	display: block;
+	margin: 1px;
+	border-left: #0518A4 2px solid;
+	color: #0066B3;
+	text-decoration: none
+}
+#left li a:hover {
+	padding:1px 0px 1px 13px;
+	border-left: #CCCCCC 2px solid;
+	color: #0518A4;
+}
+
+#right {
+	width:525px;
+	float:left;
+	padding:0;
+}
+
+#right h2 {
+	color:#0518A4;
+	font-size:14px;
+	padding:5px 8px;
+	border-left: #0518A4 2px solid;
+	margin: 0px 0px 5px 2px;
+	background:#EFEFEF;
+}
+
+.title {
+	padding:00;
+	border-left: #0518A4 3px solid;
+}
+
+
+.tex {
+	line-height:170%;
+	padding:6px 3px 15px 20px;
+}
+  
