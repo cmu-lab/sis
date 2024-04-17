@@ -1,0 +1,8 @@
+# エディタの使い方、描画窓、点や線の書き方
+
+### エディタの使い方
+「Processing」を実行すれば、以下のようなエディタが起動し準備完了となる。
+
+<div align="center">
+  <img src="./editor.png" width="404" height="427">
+</div>

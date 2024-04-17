@@ -1,0 +1,30 @@
+# 変数の取り扱い、ループ制御
+
+### 変数の取り扱い
+
+変数の種類ついては、我々がよく利用しているC言語あるいはMatlabと類似しています。以下のように、int型、float型、そして boolean型があります。
+
+
+＜サンプルプログラム＞
+<div align="center">
+  <img src="./sample3.png" width="458" height="77">
+</div>
+
+
+
+
+
+各変数の取り扱いに慣れるため、以下のサンプルプログラムを動かしてみよう。
+
+---
+
+＜サンプルプログラム＞
+<div align="center">
+  <img src="./sample3a.png" width="458" height="77">
+</div>
+
+
+＜サンプルプログラム3Aの実行結果＞
+<div align="center">
+  <img src="./sample3a_r.png" width="100" height="100">
+</div>
