@@ -128,7 +128,7 @@ Processingの各種コマンド等に関する参考ページが以下にあり�
 
 
 
-<a href="./mandel/mandel1.html" target="_blank">マンデルブロ集合描画プログラムその1</a>
+<a href="./mandel/mandel1.pde" target="_blank">マンデルブロ集合描画プログラムその1</a>
 
 
 
@@ -138,8 +138,8 @@ Processingの各種コマンド等に関する参考ページが以下にあり�
 
 
 
-<a href="./mandel/mandel2.html" target="_blank">マンデルブロ集合描画プログラムその2</a>
-<a href="./mandel/mandel3.html" target="_blank">マンデルブロ集合描画プログラムその3</a>
+<a href="./mandel/mandel2.pde" target="_blank">マンデルブロ集合描画プログラムその2</a>
+<a href="./mandel/mandel3.pde" target="_blank">マンデルブロ集合描画プログラムその3</a>
 
 
 
@@ -167,7 +167,7 @@ Processingの各種コマンド等に関する参考ページが以下にあり�
 
 （以下のプログラムでは、上記のパラメータに設定しております。）
 
-<a href="./mandel/mandel4.html" target="_blank">マンデルブロ集合描画プログラムその4</a>
+<a href="./mandel/mandel4.pde" target="_blank">マンデルブロ集合描画プログラムその4</a>
 
 実行結果の画像を、Word等に貼り付けて提出せよ。
 
