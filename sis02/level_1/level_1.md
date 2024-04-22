@@ -67,7 +67,7 @@
 *<練習プログラム1>*
 
 <div align="center">
-  <img src="./sample1.png" width="458" height="108">
+  <img src="./sample1.png" width="458" height="192">
 </div>
 
 
@@ -81,7 +81,7 @@
 *<練習プログラム2>*
 
 <div align="center">
-  <img src="./sample2.png" width="458" height="80">
+  <img src="./sample2.png" width="458" height="134">
 </div>
 
 
