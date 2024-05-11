@@ -30,7 +30,7 @@
 
 まず最初に、1次元セルオートマトンを実装してもらいます。セルオートマトンのプログラムについては、実は、Processingのサンプルプログラムとして提供されています。ただし、そのプログラムはわかりにくいと思いますので、以下に、わかりやすいコメントを記入したものを準備しました。まずは、これをコピー＆ペーストして実行し、理解を深めてください。
 
-<div align="center"><a href="1dca_1.pde" download="1dca_1.pde" target="_blank"><u>1次元セルオートマトンのプログラム</u></a></div>
+<div align="center"><a href="sis04_1dca_1.pde" download="sis04_1dca_1.pde" target="_blank"><u>1次元セルオートマトンのプログラム</u></a></div>
 
 
 
@@ -73,7 +73,7 @@
 
 
 
-<p align="center"><a href="1dca_2.pde" download="1dca_2.pde" target="_blank">機能追加版 プログラム</a></p>
+<p align="center"><a href="sis04_1dca_2.pde" download="sis04_1dca_2.pde" target="_blank">機能追加版 プログラム</a></p>
 
 
 
@@ -112,7 +112,7 @@
 
 
 
-<p align="center"><a href="2DCA_1.pde" download="2DCA_1.pde" target="_blank">2次元セルオートマトン</a></p>
+<p align="center"><a href="sis04_2DCA_1.pde" download="sis04_2DCA_1.pde" target="_blank">2次元セルオートマトン</a></p>
 
 
 
@@ -121,7 +121,7 @@
 
 
 
-<p align="center"><a href="2DCA_1.pde" download="2DCA_1.pde" target="_blank">ロマンチックバージョン</a></p>
+<p align="center"><a href="sis04_2DCA_1.pde" download="sis04_2DCA_1.pde" target="_blank">ロマンチックバージョン</a></p>
 
 
 
