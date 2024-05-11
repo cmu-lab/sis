@@ -11,8 +11,8 @@ Bus_stop[] myBus_stop = new Bus_stop[Max_Bus_stop];
 int sim_time = 0;
 
 void setup() {
+  size(800,100);
   smooth();
-  size(Length,100);
   background(0);
 
   frameRate(20);
