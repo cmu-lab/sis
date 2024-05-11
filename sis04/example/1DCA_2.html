@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>サンプルプログラム2</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #666666;
+}
+body,td,th {
+	color: #FFFFFF;
+}
+.style1 {
+	font-family: "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3"
+}
+.style2 {font-family: "ＭＳ ゴシック", "Osaka－等幅"}
+-->
+</style></head>
+
+<body>
+<table width="80%" border="2" align="center" bordercolor="#CCCCCC">
+  <tr>
+    <td><p>&nbsp;</p>
+      <blockquote>
+        <h3 class="style1">強化プログラム</h3>
+        <blockquote>
+          <p class="style1">色々な機能を付け加えた１次元セルオートマトンの強化版</p>
+        </blockquote>
+      </blockquote>      <p class="style1">&nbsp;</p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="80%" border="2" align="center" bordercolor="#CCCCCC">
+  <tr>
+    <td><div align="left">
+      <p><span class="style2"><br>
+  CA&nbsp;ca;&nbsp;&nbsp;&nbsp;//&nbsp;セルオートマトンのクラスの定義<br>
+int&nbsp;counter&nbsp;=&nbsp;0;&nbsp;//状態遷移ルールを管理するカウンター&nbsp;0から出発<br>
+<br>
+//初期化部<br>
+void&nbsp;setup()&nbsp;{<br>
+&nbsp;&nbsp;size(200,200);<br>
+&nbsp;&nbsp;frameRate(30);&nbsp;//フレームレートは速めに設定<br>
+&nbsp;&nbsp;background(0);&nbsp;<br>
+&nbsp;&nbsp;int[]&nbsp;ruleset&nbsp;=&nbsp;{0,0,0,0,0,0,0,0};&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;状態遷移ルールはルール0からスタート<br>
+&nbsp;&nbsp;ca&nbsp;=&nbsp;new&nbsp;CA(ruleset);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;セルオートマトンの初期化<br>
+}<br>
+<br>
+<br>
+//メインループ<br>
+void&nbsp;draw()&nbsp;{<br>
+&nbsp;&nbsp;ca.render();&nbsp;&nbsp;&nbsp;&nbsp;//セルオートマトンの描画関数を呼び出し<br>
+&nbsp;&nbsp;ca.generate();&nbsp;&nbsp;//次の世代のセルを計算する関数を呼び出し<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//もし画面一番下まで描画し終えたら&nbsp;if文の中を実行<br>
+&nbsp;&nbsp;if&nbsp;(ca.finished())&nbsp;{&nbsp;&nbsp;&nbsp;//ca.finishedは、画面一番下まで描画したか否かの判定<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background(0);&nbsp;//画面を黒で塗りなおし<br>
+&nbsp;&nbsp;&nbsp;&nbsp;counter&nbsp;=&nbsp;counter&nbsp;+&nbsp;1;&nbsp;//状態遷移ルールを1つインクリメント<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ca.rule_update();&nbsp;//状態遷移ルールをセット<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ca.restart();&nbsp;//セルの初期化<br>
+&nbsp;&nbsp;}<br>
+}<br>
+<br>
+//もしマウスのボタンがクリックされたら<br>
+//同じ遷移ルールで、セルの初期状態だけ変更し、計算をやりなおす<br>
+void&nbsp;mousePressed()&nbsp;{<br>
+&nbsp;&nbsp;background(0);<br>
+&nbsp;&nbsp;ca.restart();<br>
+}<br>
+<br>
+//セルオートマトンのクラスの定義本体<br>
+<br>
+class&nbsp;CA&nbsp;{<br>
+&nbsp;&nbsp;int[]&nbsp;cells;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//セルの配列を確保<br>
+&nbsp;&nbsp;int&nbsp;generation;&nbsp;&nbsp;//セルオートマトンの世代を管理する変数<br>
+&nbsp;&nbsp;int&nbsp;scl;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//セルの描画サイズ<br>
+&nbsp;&nbsp;int[]&nbsp;rules;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//状態遷移ルールを保存する配列<br>
+<br>
+&nbsp;&nbsp;CA(int[]&nbsp;r)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;rules&nbsp;=&nbsp;r;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;scl&nbsp;=&nbsp;2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cells&nbsp;=&nbsp;new&nbsp;int[width/scl];&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;restart();<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//&nbsp;状態遷移ルールをセットする関数<br>
+&nbsp;&nbsp;void&nbsp;setRules(int[]&nbsp;r)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;rules&nbsp;=&nbsp;r;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//&nbsp;状態遷移ルールを更新する関数<br>
+&nbsp;&nbsp;void&nbsp;rule_update()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;k&nbsp;=&nbsp;counter;&nbsp;//変数k&nbsp;に状態遷移ルールのカウンターをセット<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;8;&nbsp;i++)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rules[7-i]&nbsp;=&nbsp;int&nbsp;(k&nbsp;%&nbsp;2);&nbsp;//ビットシフト操作で、ルールをセットしてゆく<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;k&nbsp;=&nbsp;int(k&nbsp;/&nbsp;2);&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//&nbsp;セル状態を初期化<br>
+&nbsp;&nbsp;void&nbsp;restart()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;cells.length;&nbsp;i++)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cells[i]&nbsp;=&nbsp;int(random(2));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;generation&nbsp;=&nbsp;0;<br>
+&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;//&nbsp;次の世代のセルを計算する関数<br>
+&nbsp;&nbsp;void&nbsp;generate()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int[]&nbsp;nextgen&nbsp;=&nbsp;new&nbsp;int[cells.length];&nbsp;//次の世代のセルを保管する配列<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;1;&nbsp;i&nbsp;&lt;&nbsp;cells.length-1;&nbsp;i++)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;left&nbsp;=&nbsp;cells[i-1];&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;me&nbsp;=&nbsp;cells[i];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;right&nbsp;=&nbsp;cells[i+1];&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nextgen[i]&nbsp;=&nbsp;rules(left,me,right);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//両端の処理&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;left&nbsp;=&nbsp;cells[cells.length-1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;me&nbsp;=&nbsp;cells[0];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;right&nbsp;=&nbsp;cells[1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nextgen[0]&nbsp;=&nbsp;rules(left,me,right);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;left&nbsp;=&nbsp;cells[cells.length-2];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;me&nbsp;=&nbsp;cells[cells.length-1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;right&nbsp;=&nbsp;cells[0];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nextgen[cells.length-1]&nbsp;=&nbsp;rules(left,me,right);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;//次の世代の配列を、現在の世代にコピー<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cells&nbsp;=&nbsp;(int[])&nbsp;nextgen.clone();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;generation++;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//&nbsp;セルを描画する関数<br>
+&nbsp;&nbsp;void&nbsp;render()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;cells.length;&nbsp;i++)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(cells[i]&nbsp;==&nbsp;1)&nbsp;fill(255);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fill(0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;noStroke();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rect(i*scl,generation*scl,&nbsp;scl,scl);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//次のセルを計算<br>
+&nbsp;&nbsp;int&nbsp;rules&nbsp;(int&nbsp;a,&nbsp;int&nbsp;b,&nbsp;int&nbsp;c)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(a&nbsp;==&nbsp;1&nbsp;&amp;&amp;&nbsp;b&nbsp;==&nbsp;1&nbsp;&amp;&amp;&nbsp;c&nbsp;==&nbsp;1)&nbsp;return&nbsp;rules[0];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(a&nbsp;==&nbsp;1&nbsp;&amp;&amp;&nbsp;b&nbsp;==&nbsp;1&nbsp;&amp;&amp;&nbsp;c&nbsp;==&nbsp;0)&nbsp;return&nbsp;rules[1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(a&nbsp;==&nbsp;1&nbsp;&amp;&amp;&nbsp;b&nbsp;==&nbsp;0&nbsp;&amp;&amp;&nbsp;c&nbsp;==&nbsp;1)&nbsp;return&nbsp;rules[2];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(a&nbsp;==&nbsp;1&nbsp;&amp;&amp;&nbsp;b&nbsp;==&nbsp;0&nbsp;&amp;&amp;&nbsp;c&nbsp;==&nbsp;0)&nbsp;return&nbsp;rules[3];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(a&nbsp;==&nbsp;0&nbsp;&amp;&amp;&nbsp;b&nbsp;==&nbsp;1&nbsp;&amp;&amp;&nbsp;c&nbsp;==&nbsp;1)&nbsp;return&nbsp;rules[4];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(a&nbsp;==&nbsp;0&nbsp;&amp;&amp;&nbsp;b&nbsp;==&nbsp;1&nbsp;&amp;&amp;&nbsp;c&nbsp;==&nbsp;0)&nbsp;return&nbsp;rules[5];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(a&nbsp;==&nbsp;0&nbsp;&amp;&amp;&nbsp;b&nbsp;==&nbsp;0&nbsp;&amp;&amp;&nbsp;c&nbsp;==&nbsp;1)&nbsp;return&nbsp;rules[6];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(a&nbsp;==&nbsp;0&nbsp;&amp;&amp;&nbsp;b&nbsp;==&nbsp;0&nbsp;&amp;&amp;&nbsp;c&nbsp;==&nbsp;0)&nbsp;return&nbsp;rules[7];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//もし画面の一番下まで描画が終わったら、trueを返す<br>
+&nbsp;&nbsp;boolean&nbsp;finished()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(generation&nbsp;&gt;&nbsp;height/scl)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;true;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+}<br>
+      </span><br>
+<br>
+
+<br>
+    </div></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><br>
+<br>
+
+
+</p>
+</body>
+</html>

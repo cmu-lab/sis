@@ -1,0 +1,264 @@
+<html>
+<head>
+	<title>ながれさんその2</title>
+	<style type="text/css">
+		div.source {
+			font-size: 100%;
+			background-color: #000000;
+			color: #FFFFFF
+		}
+		span.prepro  {color: #CC55FF}
+		span.comment {color: #00FF00}
+		span.funcdef {color: #0000FF}
+		span.func    {color: #FF0000}
+		span.keywd   {color: #FF7777}
+		span.macro   {color: #00FFFF}
+		span.dquote  {color: #FFFF00}
+		span.squote  {color: #FF00FF}
+		span.number  {color: #FF8800}
+	</style>
+</head>
+<body>
+<div class="source">
+<pre>
+<span class="comment"><i>//交通シミュレータ「ながれさん」プログラム</i></span>
+<span class="comment"><i>// 追い越しができるバージョン</i></span>
+
+<span class="keywd"><b>int</b></span> Length = <span class="number">800</span>; <span class="comment"><i>//道路の長さ 800画素に設定</i></span>
+<span class="keywd"><b>int</b></span> Max_Car = <span class="number">10</span>; <span class="comment"><i>//Max_Carに設定した台数が走るようになる</i></span>
+<span class="keywd"><b>int</b></span>[][] X = new <span class="keywd"><b>int</b></span>[Length][<span class="number">2</span>]; <span class="comment"><i>//道路状況を管理する配列</i></span>
+Car[] myCar = new Car[Max_Car]; <span class="comment"><i>//車のクラスを定義</i></span>
+
+<span class="funcdef">void setup() {</span>
+  size(Length,<span class="number">100</span>); <span class="comment"><i>//Length x 100 の窓を準備</i></span>
+  background(<span class="number">0</span>); 
+  
+  frameRate(<span class="number">20</span>); <span class="comment"><i>//フレームレートは20くらいに設定すると滑らか。私のパソコンでは</i></span>
+  
+  <span class="comment"><i>//車を初期設定</i></span>
+  <span class="comment"><i>//追い越しありの場合、自分の走っているレーンの状態も管理します</i></span>
+  <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> i=<span class="number">0</span>; i &lt; Max_Car; i++){
+    <span class="comment"><i>//各車ごとに、色をランダムに塗りましょう</i></span>
+    <span class="keywd"><b>float</b></span> k1 = random(<span class="number">255</span>); 
+    <span class="keywd"><b>float</b></span> k2 = random(<span class="number">255</span>);
+    <span class="keywd"><b>float</b></span> k3 = random(<span class="number">255</span>);
+    <span class="keywd"><b>int</b></span> k4 = <span class="keywd"><b>int</b></span>(random(<span class="number">5</span>)+<span class="number">1</span>); <span class="comment"><i>//Max_speed</i></span>
+    <span class="keywd"><b>int</b></span> k5 = <span class="keywd"><b>int</b></span>(random(<span class="number">3</span>)+<span class="number">1</span>); <span class="comment"><i>//現在のスピード</i></span>
+    <span class="keywd"><b>int</b></span> k6 = <span class="number">0</span>; <span class="comment"><i>// 0は右レーン、1は左レーン</i></span>
+    color tempcolor = color(k1,k2,k3);
+    <span class="comment"><i>//車の初期位置をセット。まずは等間隔にならべましょう。</i></span>
+    myCar[i] = new Car(tempcolor,Length/Max_Car*i,<span class="number">65</span>,k4,k5,k6);
+    
+  }
+  
+  <span class="comment"><i>//道路を管理する配列を初期化</i></span>
+  <span class="comment"><i>//2レーン分、管理しないといけません。</i></span>
+  <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> i=<span class="number">0</span>; i&lt; Length; i++){
+    X[i][<span class="number">0</span>] = <span class="number">0</span>;
+    X[i][<span class="number">1</span>] = <span class="number">0</span>;
+  }
+    
+}
+
+
+
+<span class="comment"><i>//メインループ</i></span>
+<span class="funcdef">void draw() {</span>
+ 
+  background(<span class="number">0</span>); <span class="comment"><i>//画面を真っ黒に塗りつぶす</i></span>
+  draw_background(); <span class="comment"><i>//道路を描画</i></span>
+    
+ <span class="comment"><i>//各車を描画、制御する</i></span>
+ <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> j=<span class="number">0</span>; j &lt; Max_Car; j++){
+
+   <span class="comment"><i>//レーンチェンジをする場合としない場合で</i></span>
+  <span class="comment"><i>//　アクションを変更 </i></span>
+  
+   myCar[j].draw(); <span class="comment"><i>//車を描画する</i></span>
+   
+     <span class="keywd"><b>if</b></span>(myCar[j].change==<span class="number">0</span>){
+       <span class="comment"><i>//レーンチェンジをしない場合</i></span>
+       myCar[j].drive(); <span class="comment"><i>//アクセルペダルの制御関数を呼び出し</i></span>
+       myCar[j].breaking(); <span class="comment"><i>//ブレーキペダルの制御関数を呼び出し</i></span>
+     }
+     <span class="keywd"><b>else</b></span>{ 
+       <span class="comment"><i>//レーンチェンジをする場合</i></span>
+       myCar[j].lane_ch(); <span class="comment"><i>//レーンチェンジを開始</i></span>
+     }
+ }  
+  
+  <span class="comment"><i>//道路を管理する配列をきれいに</i></span>
+  <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> i=<span class="number">0</span>; i&lt; Length; i++){
+    X[i][<span class="number">0</span>] = <span class="number">0</span>;
+    X[i][<span class="number">1</span>] = <span class="number">0</span>;
+  }
+  
+  <span class="comment"><i>//もう一度、自分の位置をしっかり書き込みましょう。</i></span>
+  <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> i=<span class="number">0</span>; i&lt; Max_Car; i++){
+      X[((myCar[i].xpos + width) % width)][myCar[i].lane] = <span class="number">1</span>;
+  }
+
+}
+
+
+
+<span class="comment"><i>//車のクラスを定義</i></span>
+class Car
+{
+  color c; <span class="comment"><i>//車の色</i></span>
+  <span class="keywd"><b>int</b></span> xpos; <span class="comment"><i>//現在のx座標</i></span>
+  <span class="keywd"><b>int</b></span> ypos; <span class="comment"><i>//現在のy座標</i></span>
+  <span class="keywd"><b>int</b></span> Max_Speed;
+  <span class="keywd"><b>int</b></span> xvel; <span class="comment"><i>//x方向へのスピード（現在は1次元なので車のスピードに相当）</i></span>
+  <span class="keywd"><b>int</b></span> lane; <span class="comment"><i>//現在のレーンの状態</i></span>
+  <span class="keywd"><b>int</b></span> change; <span class="comment"><i>//レーンチェンジの状態</i></span>
+  
+  Car(color c_, <span class="keywd"><b>int</b></span> xp, <span class="keywd"><b>int</b></span> yp, <span class="keywd"><b>int</b></span> mx, <span class="keywd"><b>int</b></span> xv, <span class="keywd"><b>int</b></span> l) {
+    c = c_;
+    xpos = xp;
+    ypos = yp;
+    Max_Speed = mx;
+    xvel = xv;
+    lane = l;
+  }
+
+  <span class="comment"><i>//車を描画する関数</i></span>
+  <span class="keywd"><b>void</b></span> draw () {
+    stroke(<span class="number">0</span>);
+    fill(c); <span class="comment"><i>//各車の色をセット</i></span>
+    rect(xpos,ypos,<span class="number">15</span>,<span class="number">10</span>); <span class="comment"><i>//車のボディを書く</i></span>
+    stroke(<span class="number">0</span>);
+    fill(<span class="number">255</span>); <span class="comment"><i>//車の天井部を白に塗る</i></span>
+    rect(xpos+<span class="number">2</span>,ypos+<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>);
+    
+    <span class="comment"><i>//タイヤを描画する</i></span>
+    fill(<span class="number">0</span>);
+    rect(xpos+<span class="number">2</span>,ypos-<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>);
+    rect(xpos+<span class="number">8</span>,ypos-<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>);
+    rect(xpos+<span class="number">2</span>,ypos+<span class="number">10</span>,<span class="number">4</span>,<span class="number">2</span>);
+    rect(xpos+<span class="number">8</span>,ypos+<span class="number">10</span>,<span class="number">4</span>,<span class="number">2</span>);
+    
+  }
+
+  <span class="comment"><i>//アクセルペダルの制御関数</i></span>
+  <span class="keywd"><b>void</b></span> drive () {
+    
+      <span class="comment"><i>//前方をチェックするルーチン</i></span>
+      <span class="keywd"><b>int</b></span> k = <span class="number">0</span>;
+      <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> i = xpos + <span class="number">1</span>; i &lt; xpos + <span class="number">15</span>; i++){
+        k = k + X[(i + width) % width][lane];
+      }
+      
+      <span class="comment"><i>//もし前方に車があれば、kは0よりも大きくなる</i></span>
+      <span class="keywd"><b>if</b></span>(k &lt; <span class="number">1</span>) {
+        xvel = xvel + <span class="number">2</span>; <span class="comment"><i>//アクセルを踏むとスピードが2上がる</i></span>
+        <span class="comment"><i>//もし最大速度よりも大きくなったら、制限をかける</i></span>
+        <span class="keywd"><b>if</b></span>(xvel &gt; Max_Speed){
+          xvel = Max_Speed; 
+        }
+      }
+    
+      X[xpos][lane] = <span class="number">0</span>; <span class="comment"><i>//道路状態を管理する配列の、現在の車の位置0にする。</i></span>
+                   <span class="comment"><i>//この配列が1になっていれば、車両が存在する。</i></span>
+                   <span class="comment"><i>//0になっていれば、車両は存在しない</i></span>
+                   
+      xpos = (xpos + xvel + width) % width; <span class="comment"><i>//車の位置を移動</i></span>
+      
+      X[xpos][lane] = <span class="number">1</span>;   <span class="comment"><i>//車の位置を道路管理配列に書き込む</i></span>
+  
+
+      
+  }
+    
+   
+  <span class="comment"><i>//ブレーキペダルの制御関する</i></span>
+  <span class="keywd"><b>void</b></span> breaking (){
+    <span class="comment"><i>//前方に車がいるかどうかを判定</i></span>
+    <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> i = xpos + <span class="number">1</span>; i &lt; xpos + <span class="number">20</span>; i++){
+      <span class="comment"><i>//車がいれば、ブレーキをふむ</i></span>
+      <span class="keywd"><b>if</b></span>(X[(i+width)%width][lane] == <span class="number">1</span>){
+        xvel = xvel - <span class="number">2</span>; <span class="comment"><i>//ブレーキをふむと 2速度が減少</i></span>
+        <span class="keywd"><b>if</b></span>(xvel &lt; <span class="number">0</span>) xvel = <span class="number">0</span>;
+        
+        
+        change = <span class="number">1</span>;
+        <span class="keywd"><b>break</b></span>;
+      }
+    }
+  }
+  
+  <span class="comment"><i>//追い越し（レーンチェンジ）を制御する関数</i></span>
+  <span class="keywd"><b>void</b></span> lane_ch(){
+    
+    
+    <span class="comment"><i>//レーンが0だったら、1へ移動しながら追い越す</i></span>
+    <span class="keywd"><b>if</b></span>(lane == <span class="number">0</span>){ 
+      
+         ypos = ypos - <span class="number">3</span>; <span class="comment"><i>//y座標を少しずつ移動</i></span>
+         xpos = (xpos + xvel + width) % width; <span class="comment"><i>//x座標も移動</i></span>
+         X[xpos][lane] = <span class="number">0</span>;
+         <span class="keywd"><b>if</b></span>(xvel &lt; <span class="number">0</span>){
+           xpos = (xpos + <span class="keywd"><b>int</b></span>(random(<span class="number">3</span>)) + width) % width;
+         }
+         X[xpos][lane] = <span class="number">1</span>;
+         
+         <span class="keywd"><b>if</b></span>(ypos &lt; <span class="number">30</span>){ 
+           <span class="comment"><i>//y座標が30より小さくなった時点でレーンチェンジ完了</i></span>
+           change = <span class="number">0</span>;
+           lane = <span class="number">1</span>;
+         
+           X[xpos][<span class="number">0</span>] = <span class="number">0</span>;
+           X[xpos][<span class="number">1</span>] = <span class="number">1</span>;
+         }
+    }
+    
+    <span class="comment"><i>//レーンが1だったら、0へ移動しながら追い越す</i></span>
+    <span class="keywd"><b>if</b></span>(lane == <span class="number">1</span>){
+       ypos = ypos + <span class="number">3</span>; <span class="comment"><i>//y座標を少しずつ移動</i></span>
+       xpos = (xpos + xvel + width) % width;  <span class="comment"><i>//x座標も移動</i></span>
+       X[xpos][lane] = <span class="number">0</span>;
+       <span class="keywd"><b>if</b></span>(xvel &lt; <span class="number">0</span>){
+         xpos = (xpos + <span class="keywd"><b>int</b></span>(random(<span class="number">3</span>)) + width) % width;
+       }
+       X[xpos][lane] = <span class="number">1</span>;
+       <span class="keywd"><b>if</b></span>(ypos &gt; <span class="number">65</span>){
+          <span class="comment"><i>//y座標が65より大きくなった時点でレーンチェンジ完了</i></span>
+         change = <span class="number">0</span>;
+         lane = <span class="number">0</span>;
+         
+         X[xpos][<span class="number">1</span>] = <span class="number">0</span>;
+         X[xpos][<span class="number">0</span>] = <span class="number">1</span>;
+       }
+    
+    }
+  }
+  
+ 
+}
+
+<span class="comment"><i>//背景を描画する</i></span>
+<span class="funcdef">void draw_background(){</span>
+  noStroke();
+  
+  <span class="comment"><i>//道路を描画</i></span>
+  fill(<span class="number">150</span>,<span class="number">150</span>,<span class="number">150</span>);
+  rect(<span class="number">0</span>,<span class="number">10</span>,Length,<span class="number">80</span>);
+  
+  <span class="comment"><i>//中央線を描画</i></span>
+  <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> j=<span class="number">0</span>; j &lt; <span class="number">40</span>; j++){
+    fill(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>);
+    rect(<span class="number">0</span>+j*<span class="number">20</span>,<span class="number">50</span>,<span class="number">15</span>,<span class="number">2</span>);
+  }
+  
+}
+ 
+ 
+<span class="funcdef">void mousePressed() {</span>
+ saveFrame(<span class="dquote">&quot;sample_1.png&quot;</span>); 
+}
+
+
+</pre>
+</div>
+</body>
+</html>

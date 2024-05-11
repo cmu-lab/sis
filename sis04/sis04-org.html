@@ -1,0 +1,591 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>第4回のページ</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.style1 {font-family: "ＭＳ ゴシック", "Osaka−等幅"}
+.style27 {font-size: 12px}
+.style28 {font-family: "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3"}
+.style31 {color: #FFFFFF}
+-->
+</style>
+</head>
+<style type="text/css">
+<!--
+span{ line-height: 150%; } 
+-->
+div.contentsbox
+{
+	border-style: solid;
+	border-width: 1px 2px 2px 1px;
+	border-color: #c0c0c0 #808080 #808080 #c0c0c0;
+	padding: 0.5em;
+	width: 400px;
+}
+.style22 {color: #FF0000}
+.style23 {color: #0000FF}
+.style26 {font-size: 14px}
+.style30 {color: #0000FF; font-weight: bold; }
+</style>
+
+<body>
+
+<div id="head">
+  <h1 align="center" class="style1"><span class="contentsbox">第4回： セルオートマトン　</span></h1>
+</div>
+<!-- head -->
+
+<div id="main">
+  <table width="600" border="1" align="center">
+  <tr>
+    <td><blockquote>
+      <p>&nbsp;</p>
+      <p><strong>■重要■レポートの提出方法について</strong></p>
+      <p>今年度はManabaを使って提出してもらいます．</p>
+      <p>第4回のレポート提出期限は <span class="style22">2023年05月29日 15:15</span> まで。</p>
+      <p>必修課題は全部で4つ（演習1、演習2、演習3、演習4）。選択課題は1つ</p>
+      <blockquote>
+        <p>演習1. 1次元セルオートマトンの実装 (2点)</p>
+        <p>演習2. 1次元セルオートマトンの実装（インタラクティブ） (2点)</p>
+        <p>演習3. 2次元セルオートマトンの実装 (3点)</p>
+        <p>演習4. セルオートマトンのハードウェア実装への挑戦（5点）</p>
+        <p>選択課題（どれも5点）</p>
+        <blockquote>
+          <p>選択1. 拡散反応系の実装 (5点)</p>
+          <p>選択2. 高速道路シミュレータの実装（5点）</p>
+          <p>選択3. バスシミュレータの実装（5点）</p>
+        </blockquote>
+        <p>&nbsp;</p>
+      </blockquote>
+      <p><strong>(for English) ■Important!■ How to submit your report*</strong></p>
+      <p>You should submit your report by using 'Manaba' system, and the deadline of second report will be 2023/05/29 15:15. </p>
+      <p>You must solve the exercises (ex.1, 2, 3, 4), and if possible, please select one of the excercie from three problems. </p>
+      <blockquote>
+        <p>ex.1: 1D cellular automata (2 points)</p>
+        <p>ex.2: 1D cellular automata (interactive version)(2 points)</p>
+        <p>ex.3: 2D cellular automata (3 points)</p>
+        <p>ex.4:Challenges in hardware implementation of cellular automata (5 points)</p>
+        <p>(Please select only one ex from the following three choicess)</p>
+        <blockquote>
+          <p>1) : To implement the Reaction-diffusion system (5 points)
+          </p>
+          <p>2) : To implement the highway simulation  (5 points)</p>
+          <p>3): To implement the bus simulation  (5 points)</p>
+        </blockquote>
+        <p class="style23">&nbsp;</p>
+      </blockquote>
+      <p>&nbsp;</p>
+    </blockquote></td>
+  </tr>
+</table>
+<br>
+<table width="600" border="1" align="center">
+  <tr>
+    <td><blockquote>
+      <p>&nbsp;</p>
+      <p><strong>■授業の資料■</strong> (Lecture Materials)</p>
+      <p align="center"><a href="SIS_4th_Class_keynote_20230515_web.pdf">第4回： セルオートマトン　(PDFファイル)</a></p>
+      <p align="center">[4th: cellular automata (PDF file)]</p>
+      <p align="center">&nbsp;</p>
+      <p align="center"><a href="cell_calc_sheet.pdf">授業中に利用する計算用紙 (PDFファイル)</u></a></p>
+      <p align="center"><a href="cell_calc_sheet.pdf">Cell Automata Calc. Sheet(PDF file)</a></p>
+      <p align="center">&nbsp;</p>
+    </blockquote></td>
+  </tr>
+</table>
+
+
+
+  <div align="center"></div>
+  <p>&nbsp;</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><blockquote>
+        <p>&nbsp;</p>
+        <p class="style22"><strong>■プログラムについて■</strong></p>
+        <p class="style22"><strong>演習のプログラムで文字化けする場合には、ブラウザのエンコードを「utf-8」に設定してみてください。</strong></p>
+        <p align="center">&nbsp;</p>
+      </blockquote></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">1. 1次元セルオートマトンの実装 [1D cellular automata]</h2>
+ </div>
+</div>
+<br>
+<br>
+
+ <p>&nbsp;</p>
+ <blockquote>
+   <p>まず最初に、1次元セルオートマトンを実装してもらいます。セルオートマトンのプログラムについては、実は、Processingのサンプルプログラムとして提供されています。ただし、そのプログラムはわかりにくいと思いますので、以下に、わかりやすいコメントを記入したものを準備しました。まずは、これをコピー＆ペーストして実行し、理解を深めてください。</p>
+ </blockquote>
+ 
+ 
+   <table width="450" border="1" align="center">
+    <tr>
+      <td><div align="center"><a href="example/1DCA_1.html"><u>1次元セルオートマトンのプログラム</u></a></div></td>
+    </tr>
+  </table>
+
+ 
+   <blockquote>
+     <p>(for English) First, you will try to implement one-dimensional cellular automata. For the program of cellular automata, it is provided as a sample program of &quot;Processing&quot;. However, since the program is too difficult to be understood, and the following program is prepared instead of it. Please try to copy and paste this, and run, then understand how to implement the C.A..   </p>
+   </blockquote>
+   <table width="450" border="1" align="center">
+     <tr>
+       <td><div align="center"><a href="example/1DCA_1.html"><u>1D cellular automata sample program</u></a></div></td>
+     </tr>
+  </table>
+   <p>&nbsp;</p>
+  <table width="600" border="1" align="center">
+     <tr>
+       <td><blockquote>
+           <p>&nbsp;</p>
+         <p><strong>■プログラムの解説と練習問題</strong></p>
+         <p>ここで実装する1次元セルオートマトンは、2状態3入力1出力のものである。つまり、「白か黒」、あるいは「1か0」のどちらかの状態をとるセルから構成され、注目セルの両隣セルを注目して、次の状態を決めるセルオートマトンです。</p>
+         <blockquote>
+           <p><strong>■練習1. </strong></p>
+           <p>遷移ルールの定義を変化させて、セルオートマトンのふるまいを調べてみよう。つまり、遷移ルールの定義部分</p>
+           
+            <table width="450" border="1" align="center">
+    <tr>
+      <td><div align="center"><span class="style26 style1">int[] ruleset = {0,1,0,1,1,0,1,0}; </span></div></td>
+    </tr>
+  </table>
+           
+            <p align="left" class="style27 style28">を、色々と変化させてみましょう</p>
+           <p align="left" class="style27">&nbsp;</p>
+           <p align="left" class="style27"><strong>■練習2. </strong></p>
+           <p align="left">授業で紹介したルール184を実装し、交通流を模擬しているかどうか確認しましょう。</p>
+           <p align="left">&nbsp;</p>
+          </blockquote>
+         <p align="left">■explanation of program and some modifications</p>
+         <p></p>
+         <p>1-D cellular automata (3-input 1-output 2 state), here, the cellular automaton consists of cells that take the state of either &quot;0 or 1&quot; or, &quot;black or white&quot;. In this case, the next focus cell state will be determined by paying attention to both sides cells.</p>
+         <blockquote>
+           <p>■Modification 1 </p>
+           <p>Please modify the state-transition rules, that is, the following part. Then, observe the behavior of the modified cellular automata.</p>
+           <table width="450" border="1" align="center">
+             <tr>
+               <td><div align="center"><span class="style26 style1">int[] ruleset = {0,1,0,1,1,0,1,0}; </span></div></td>
+             </tr>
+           </table>
+           <p align="left" class="style27 style28">■Modification 2</p>
+           <p>Please make the rule 184 introduced in the class, and confirm that the highway behavior can be achieved by this C.A.</p>
+           <p align="left" class="style27 style28">&nbsp;</p>
+         </blockquote>
+       </blockquote></td>
+    </tr>
+   </table>
+   <p>&nbsp;</p>
+   <h4 align="left">■各種機能の追加</h4>
+<blockquote>
+  <p align="left">上記サンプルプログラムでは、状態遷移ルールをいちいち設定しなおさなければならないので、これは大変な手間ですね。以下のような機能を追加することにします。</p>
+  <blockquote>
+    <p align="left"><strong>・機能1</strong>　画面一番下まで描画を完了したら、次の状態遷移ルールにセットしなおす</p>
+    <p align="left"><strong>・機能2</strong>　状態遷移ルールは、最初ルール0からスタートし、255まで増加する</p>
+    <p align="left"><strong>・機能3</strong>　マウスを押すと、同じルールで、異なる初期状態からセルオートマトンを計算しなおす</p>
+  </blockquote>
+  <p align="left">この3つの機能を追加した、強化プログラムを以下に準備しました。これについて理解を深めてみましょう。</p>
+</blockquote>
+   <p align="left">&nbsp;</p>
+  <table width="600" border="1" align="center">
+     <tr>
+       <td><div align="center">
+         <p>&nbsp;</p>
+         <p><a href="example/1DCA_2.html" target="_blank"><u>機能追加版 プログラム</u></a></p>
+           <p>※1. 最初のルール0あたりは、あまり動きがないので注意。そのうち活発に動くようになります。<br>
+            ※2. println文などを使って、現在の状態を表示させるように工夫するとよいですね。</p>
+           <p><br>
+           </p>
+       </div></td>
+     </tr>
+   </table>
+   <p align="left">■Some improvements</p>
+<blockquote>
+  <p align="left">In the above sample program, you should be re-set each time the state transition rules. It is quite hard job, so we will add the following functions.</p>
+  <blockquote>
+    <p align="left">・Function1. When the program has finished drawing to the bottom screen, it uses the next rule set of state transition rules. </p>
+    <p align="left">・Function2. The state transition rules: start = rule 0, and the end = rule 255. </p>
+    <p align="left">・Function3. To press the mouse, with the same rules, to re-calculate the cellular automata from different initial states</p>
+  </blockquote>
+</blockquote>
+   <table width="600" border="1" align="center">
+     <tr>
+       <td><div align="center">
+         <p>&nbsp;</p>
+         <p><a href="example/1DCA_2.html" target="_blank"><u>improved version</u></a></p>
+         <p><br>
+       </p>
+       </div></td>
+     </tr>
+   </table>
+   <p align="left">&nbsp;</p>
+   <table width="600" border="1" align="center">
+     <tr>
+       <td><blockquote>
+           <p>&nbsp;</p>
+         <p><strong>■演習1</strong><strong>.</strong> <span class="style30">[2点]</span> クラス1〜4を生成するルールを、各クラスに対し1つずつ見つけて、それらの実行結果を貼り付けたものを提出してください。つまり、最終的にはルール4つ、実行結果の画面4つを提出してもらうことになります。</p>
+         <p>■Ex1. (3points) Please find one for each class, a rule that generates the 1-4 class. And, attach the results of running them to MS-word file.
+          That is, finally, you will submit 4 figures with respect to the 4 different rules. </p>
+         <p>&nbsp;</p>
+       </blockquote></td>
+     </tr>
+   </table> 
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">2. 1次元セルオートマトン（インタラクティブ） [1D cellular automata (interactive)]</h2>
+ </div>
+</div>
+  <br>
+  <br>
+   
+  <p>&nbsp;</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><div align="center">
+        <p>&nbsp;</p>
+        <p><u><a href="example/processing_CA_interactive/processing_CA_interactive.pde">1次元セルオートマトン （インタラクティブ）[1D Cellular Automata (Interactive Version)]</a></u></p>
+        <blockquote>
+          <p>※1次元セルオートマトンのインタラクティブバージョンのプログラムを上記に置きましたので、ダウンロードして、実行してみてください。</p>
+          <p>Please access the above program and download it, and run it. </p>
+          <p><br>
+          </p>
+        </blockquote>
+      </div></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><blockquote>
+        <p>&nbsp;</p>
+        <p><strong>■演習2</strong><strong>.</strong> <span class="style30">[2点]</span> 上記に示す1次元セルオートマトン（インタラクティブ）を、自分なりに改造してみてください。その改造したプログラム、および改造のポイントを説明したワードファイルおよび結果のスクリーンショットをまとめて、提出すること</p>
+        <p>■Ex2. (2points) About the above sample program (1D Cellular Aautomata, Interactive Version), please modfy it based on your original idea, freely. Then, please submit the program and word file that includes explanation of improvement of program and the results (screen shots). </p>
+        <p>&nbsp;</p>
+      </blockquote></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+
+  <div id="right"><!-- 本文 -->
+    <div class="title">
+    <h2 class="style1 style1">3. 2次元セルオートマトン [2D cellular automata]</h2>
+ </div>
+</div>
+  <br>
+  <br>
+  
+  <p>
+  
+  <blockquote>
+    <p>授業中に紹介したライフゲームを実装してみましょう。ライフゲームについても、実は、Processingのサンプルプログラムとして提供されていますが、理解しやすいように、以下のコメント付きのプログラムを準備しましたので、こちらを参考にしてください。
+    </p>
+  </blockquote>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><a href="example/2DCA_1.html"><u>2次元セルオートマトン</u></a></div></td>
+    </tr>
+  </table>
+
+  <blockquote>
+    <p>Please try to implement the Game of Life that was introduced in class. Also, Game of Life,  it is provided as a sample program of &quot;Processing&quot;, but as easy to understand,   a program with comments is prepared as follows:</p>
+  </blockquote>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><a href="example/2DCA_1.html"><u>2D cellular automata</u></a></div></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <blockquote>
+    <p>上記のプログラムでは、ちょっと面白くないので、フェード効果（画面全体を薄い色で塗りつぶす）を取り入れたプログラムを準備しました。少しロマンチックになるのではないでしょうか？  </p>
+  </blockquote>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><a href="example/2DCA_2.html"><u>ロマンチックバージョン </u></a></div></td>
+    </tr>
+  </table>
+  <blockquote>
+    <p>In the above program, it is not interesting actually. We prepared a program with the fade effect. It may become a little romantic, isn't it? </p>
+  </blockquote>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><a href="example/2DCA_2.html"><u>Romantic Version</u></a></div></td>
+    </tr>
+  </table>
+  <p>  
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><p>&nbsp;</p>
+        <blockquote>
+          <p><strong>■演習3. <span class="style23">[3点] </span></strong>相互作用の部分を自分なりに調整し、興味深いふるまいを行う2次元セルオートマトンを作ってみてください。興味深い発見ができなくても、自分なりのものであればオッケーです。</p>
+          <p class="style22">※1.実行結果、2.プログラム、3.工夫した点の説明をまとめ、PDFファイルにして提出すること．</p>
+          <p>&nbsp;</p>
+          <p>■ex3. (3 points)</p>
+          <p>Please create a two-dimensional cellular automata, which was adjusted to your original part of the interaction, and <br>
+          make an interesting behavior (Even if you can not find interesting, the most important point is to change the rule of interaction). And, the following materials will be submitted. </p>
+          <p>1. execution result, 2. program, 3. some explanation about your originalities.</p>
+          <p>&nbsp;</p>
+        </blockquote>
+      </td>
+    </tr>
+  </table>
+
+
+
+<br>
+<br>
+  <div id="right"><!-- 本文 -->
+    <div class="title">
+    <h2 class="style1 style1">4. セルオートマトンのハードウェア実装への挑戦 </h2>
+   </div>
+  </div>
+  <br>
+  <br>
+  <p>
+  
+        <blockquote>
+          <p><strong>■演習4. <span class="style23">[5点] </span></strong>授業中に紹介した歯車計算機のようなイメージで、例えば、セルオートマトンをハードウェアとして実装しようとしたら、皆さんは、どのようなハードウェアを設計しますか？
+      　。自由に発想し、それをPDFファイルにして提出すること．（他のメンバとの協力はせずに、必ず1人でアイデアを出してください）。また、ハードウェアとしての実装が難しい場合には、
+      どこが最大の阻害要因となっているのかを説明すること。
+    </p>
+          <p>&nbsp;</p>
+          <p>■ex4. (5 points)</p>
+          <p>If you were to try to implement a cellular automaton as hardware, for example, in the image of the gear calculator introduced in class, what kind of hardware would you design? (Feel free to come up with your own idea, and submit it as a PDF file. (Please be sure to come up with your idea alone, without collaborating with other members.) If it is difficult to implement as hardware, explain what is the biggest impediment.</p>
+          <p>&nbsp;</p>
+        </blockquote>
+      </td>
+    </tr>
+  </table>
+  
+
+
+
+  <p>&nbsp;</p>
+  <table width="701" height="70" border="0">
+    <tr>
+      <th align="left" bgcolor="#FF0000" scope="col"><blockquote>
+        <blockquote>
+          <p class="style31">以下，3つの選択演習課題を準備しています．どれも得点は同じです．いずれか1つを選択して提出してください．もちろん，3つ選択して提出してもらっても結構です．その分，加点します．</p>
+          <p class="style31">We are preparing a selection of exercises three. The score is the same for all. Please submit by selecting any one. 
+            Of course, if possible, please do two or three exercises, and I will give additional points.          </p>
+        </blockquote>
+      </blockquote></th>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">選択演習課題1. 反応拡散系シミュレータの解析 (5点) </h2>
+    <h2 class="style1 style1">[Reaction-diffusion system] (5 points)</h2>
+ </div>
+</div>
+
+  <p><br>
+  <p>
+  <br>  
+  <blockquote>
+    <p>選択課題1では，反応拡散系シミュレータ（Jonathan McCabe氏が作成したもの）の解析を行ってもらいます．プログラムを実行すると以下のような綺麗な拡散する模様の映像が出てきます．  </p>
+    <table width="350" border="1" align="center">
+      <tr>
+        <td><div align="center">
+          <p><a href="example/turing.pde"><u>反応拡散系シミュレータのプログラム</u></a></p>
+        </div></td>
+      </tr>
+    </table>
+    <p>In the choice 1, the analysis of the reaction-diffusion system simulator (is produced by Mr. Jonathan McCabe created). This simulator provides the following beautiful figures.</p>
+    <table width="350" border="1" align="center">
+      <tr>
+        <td><div align="center">
+          <p><a href="example/turing.pde"><u><span class="style1 style1">Reaction-diffusion system</span> program</u></a></p>
+        </div></td>
+      </tr>
+    </table>
+    <p><br>
+    </p>
+  </blockquote>
+  <p align="center"><img src="images/turing_pattern.png" width="310" height="334">  
+  <p>&nbsp;</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><p>&nbsp;</p>
+        <blockquote>
+          <p><strong>■選択演習課題1. <span class="style23">[5点] </span></strong>このプログラムでは，キーボードから「r」「p」「c」「b」「i」「s」「+」「-」あるいはカーソルキーの「上下右左」を入力することで，制御することができます．さらにマウスを使ってインタラクションすることも可能です．　</p>
+          <p>では，このプログラムは一体，どのような動きをしているのかを，プログラムを解読して，簡単な説明書（500文字程度で結構です）を作りなさい．（このプログラムが何をシミュレーションしようとしているのか，また上記のキー操作で，どのようなパラメータが操作されるのかなど，簡潔に説明すること）</p>
+          <p>■Ex. (5 points)</p>
+          <p>In this program, &quot;+&quot;, &quot;r&quot;, &quot;p&quot;, &quot;c&quot;, &quot;b&quot;, &quot;i&quot;, &quot;s&quot;  keys control the behavior, and the mouse clicking also do the interaction .By reading the program, please make a brief description (in 300 words),  e.g., the key operation is related to the parameters in the program. </p>
+          <p>&nbsp;</p>
+        </blockquote>
+      </td>
+    </tr>
+  </table>
+  <p>  
+  <p>
+  <div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">選択演習課題2. 交通流シミュレータ「ながれさん」(5点)[implemantation of highway simulation]</h2>
+ </div>
+</div>
+  
+  <p><br>
+    <br>
+</p>
+  <p>&nbsp;</p>
+  <blockquote>
+    <p>選択課題2では、交通流シミュレータという、現実世界を模擬したシミュレータを作成してもらいます。</p>
+    <p>■まずは、「追い越しのできない」シミュレータに挑戦してみましょう。  </p>
+  </blockquote>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><a href="example/nagare_1.html"><u>追い越しのないバージョンプログラム</u></a></div></td>
+    </tr>
+  </table>
+  <blockquote>
+    <p>In the choice 2, you will try to create a simulator which simulates that traffic flow simulator as the real world.</p>
+    <p>First of all, let's implment &quot;can not do passing version&quot; in the simulator.</p>
+  </blockquote>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><a href="example/nagare_1.html"><u>Cannot passing version  </u></a></div></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <p><img src="images/sample_1.png" alt="" width="661" height="82" border="1"> </p>
+  <p align="center"><strong>「ながれさん」（追い越しのできないバージョン）の実行結果 </strong>
+  (results of cannot passing version program)<p><br>
+  </p>
+  <p>どうでしょうか？うまく動きましたか？  
+  多少、交通渋滞の様子が模擬できているのではないでしょうか？
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><p>&nbsp;</p>
+        <blockquote>
+          <p><strong>■選択演習課題2-1. <span class="style23">[1点] </span></strong>途中に<strong>信号機</strong>などを取り付けてみると、さらにリアルなシミュレータになります。また，自動車の台数，スピード等を変化させるとさらに興味深い結果になると思います．これらを実現してみてください。</p>
+          <p><strong>■選択演習課題2-2.<span class="style23">[2点] </span></strong>このシミュレータに<strong>「サグ部」</strong>を設定し渋滞が発生する様子を実現してください．</p>
+          <p>これらを実装したプログラムおよび実行画面をキャプチャしたものをワード等に貼り付けて提出してください．</p>
+          <p>■2-1. (1 points) When some signals are installed into this simulator, it will be more realistic simulator. In addition,
+          varying number, the speed of cars will give more interesting results. </p>
+          <p>■2-2. (2 points) Please make sug section in this simulator, and observe the traffic jams generation due to the sug section. </p>
+          <p>Submit the MS-word file (or pdf file) including the above results. </p>
+          <p>&nbsp;</p>
+        </blockquote>
+      <p align="left">&nbsp;</p></td>
+    </tr>
+  </table>
+  <p>  
+  <p>  
+  <blockquote>
+    <p>■つぎに、「追い越しのできる」シミュレータに挑戦してみましょう。
+      注意してほしいのは、このプログラムは、衝突判定がかなりイイカゲンです。<span class="style22"><strong>皆さんの教育のためを思って、わざとイイカゲンなプログラムにしてあります。本当です。</strong></span>できる人は、このプログラムの衝突判定部分を、しっかりと作りこんでみましょう。
+    </p>
+  </blockquote>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><a href="example/nagare_3.html"><u>追い越しのできるバージョンプログラム</u></a></div></td>
+    </tr>
+  </table>
+  <blockquote>
+    <p>Next, let's develop the simulator &quot;can do passing&quot; version.    </p>
+  </blockquote>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><a href="example/nagare_3.html"><u>Passing version</u></a></div></td>
+    </tr>
+  </table>
+  <p><img src="example/sample_3.png" width="690" height="86">
+  <p align="center"><strong>「ながれさん」（追い越しのできるバージョン）の実行結果 </strong>  
+  <p>  
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><p>&nbsp;</p>
+          <blockquote>
+            <p><strong>■選択演習課題2-3.<span class="style23">[2点] </span></strong>上記，信号機とサグ部を両方実装したプログラムを用いて，以下の現象を解析して、レポートしてください。</p>
+            <p>1) 任意の2台の車の色を<span class="style22"><strong>赤色</strong></span>に，その他のすべての車の色を<span class="style23"><strong>青色</strong></span>に指定してください．</p>
+            <p>2) 上記の2台を，<strong>全く同じ性能を持つようにし</strong>，ほぼ同じ位置から出発させたとき，その挙動はどうなりますか？例えば，タイミングによっては，信号待ち等の影響で，この2台に圧倒的な差ができてしまうでしょうか？</p>
+            <p>3) 上記の2台のうち，1台を<strong>普通</strong>の性能，もう1台を<strong>やや速め</strong>の性能にして，ほぼ同じ位置から出発させてみてください．その挙動はどうなりますか？やや速めの車の方が圧倒的な差をつけるでしょうか？それとも，そうでもないでしょうか？</p>
+            <p>※よくネット上で</p>
+            <p>「時速60kmと時速80kmの自動車２台が同時に大阪を出発して一般道のみで東京を目指した際、<br>
+              所要時間の差は20分ほどしかなかった」という話を聞いたことがあるのですが、本当でしょうか？</p>
+            <p>といった疑問に答えるサイトがありますが，上記の3)のシミュレータを使えば，そんな疑問に対して簡単に解決できる？（と思われます）．</p>
+            <p>&nbsp;</p>
+            <p>■2-3(2 points)</p>
+            <p>1) Please modify the simulator as, choose two cars and set Red color, and the other cars are Blue color. </p>
+            <p>2) Selected two cars are same performance. And start the two cars almost same position, and how about the behavior of them? <br>
+              Is there big difference between them? </p>
+            <p>3) Selected two cars are not same performance. That is, one car is relatively faster than anothor. And start the two cars almost same position, and how about the behavior of them? Is there big difference between them? </p>
+            <p>Please submit the report about the above three questions. </p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </blockquote></td>
+    </tr>
+  </table>
+  <p>  
+  <p>
+  <div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">選択演習課題3. バス停シミュレータ「一徹」（Ittetsu）(5点) [bus simulator]</h2>
+ </div>
+</div>
+
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>■選択課題3では、バス停シミュレータ「一徹」に取り組んでみましょう．以下に，サンプルプログラムがありますので，まずはそれを実行させてみてください．平和に時間がながれ，バスも平和に動いていますね．</p>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><u><a href="example/ittetsu.pde">バス停シミュレータ</a></u></div></td>
+    </tr>
+  </table>
+  <p>■Let's try to develop bus  simulator.</p>
+  <table width="350" border="1" align="center">
+    <tr>
+      <td><div align="center"><u><a href="example/ittetsu.pde">bus simulator</a></u></div></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <p><img src="images/sample_ittetsu.png" width="671" height="83"></p>
+  <p>&nbsp;</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><p>&nbsp;</p>
+          <blockquote>
+            <p><strong>■選択演習課題3.<span class="style23">[5点] </span></strong></p>
+            <p>このサンプルプログラムを実行し，ある程度時間が経過すると，複数台バスが連結するようになっていると思います．この現象がもっと，はっきりと出るように改良してみてください．</p>
+            <p>また，バスが複数台連結してしまう現象を解決する方策を盛り込んで，シミュレータを実装してください．難易度が高いと思いますが、がんばってください。</p>
+            <p>プログラム，実験結果，考察を含めてレポートしてください．</p>
+            <p>■3 (5 points)</p>
+            <p>You run this sample program and the time has passed, then, multiple bus will be coupling. More, please try to improve to come out clearly this phenomenon. In addition, to create a way to solve the problem the multiple bus will be coupling, and please implement such the proposed method in the simulator. Actually, the difficulty of this ex., is high, but please do your best.</p>
+            <p>Submit the MS-word (or PDF) including the program and results and discussions.</p>
+            <p>&nbsp;</p>
+          </blockquote></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <hr>
+<p>Copyright &copy; Hajime Nobuhara, All Rights Reserved. 
+Last modified: 
+               <!-- #BeginDate format:IS1a -->2019-05-14 2:12 pm<!-- #EndDate -->
+
+<p>
+  <p>  
+  <p>
+  <p>   
+<p>
+
+
+  
+  
+</p>
+</div>
+</body>
+</html>
+<!-- Copyright (C) Net Mania. All Rights Reserved. http://www.netmania.jp/ -->

@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>サンプルプログラム3</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #666666;
+}
+body,td,th {
+	color: #FFFFFF;
+}
+.style1 {
+	font-family: "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3"
+}
+.style2 {font-family: "ＭＳ ゴシック", "Osaka－等幅"}
+-->
+</style></head>
+
+<body>
+<table width="80%" border="2" align="center" bordercolor="#CCCCCC">
+  <tr>
+    <td><p>&nbsp;</p>
+      <blockquote>
+        <h3 class="style1">サンプルプログラム</h3>
+        <blockquote>
+          <p class="style1">2次元セルオートマトンの基本プログラム</p>
+        </blockquote>
+      </blockquote>      <p class="style1">&nbsp;</p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="80%" border="2" align="center" bordercolor="#CCCCCC">
+  <tr>
+    <td><div align="left">
+      <p><br>
+<span class="src_typekeyword">i<span class="style2">nt</span></span><span class="style2">&nbsp;sx,&nbsp;sy;&nbsp;//2次元セルを管理する縦と横の長さ<br>
+float&nbsp;density&nbsp;=&nbsp;0.5;&nbsp;//初期状態の密度&nbsp;<br>
+int[][][]&nbsp;world;&nbsp;//各セルを管理する配列<br>
+<br>
+//初期化部<br>
+void&nbsp;setup()&nbsp;<br>
+{&nbsp;<br>
+&nbsp;&nbsp;size(200,&nbsp;200);&nbsp;//描画窓は200x200<br>
+&nbsp;&nbsp;frameRate(30);&nbsp;//フレームレートは12<br>
+&nbsp;&nbsp;sx&nbsp;=&nbsp;width;&nbsp;//2次元セルの管理配列の横の長さ<br>
+&nbsp;&nbsp;sy&nbsp;=&nbsp;height;&nbsp;//2次元セルの管理配列の縦の長さ<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;//sx&nbsp;*&nbsp;sy&nbsp;の大きさの配列を2つ準備<br>
+&nbsp;&nbsp;&nbsp;//ここで、1つめは現在の世代、2つめは次の世代を保管するために使う<br>
+&nbsp;&nbsp;world&nbsp;=&nbsp;new&nbsp;int[sx][sy][2];<br>
+<br>
+&nbsp;&nbsp;stroke(255);&nbsp;&nbsp;&nbsp;//点の色は白<br>
+&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//初期化&nbsp;sx&nbsp;*&nbsp;sy&nbsp;*&nbsp;densityの分だけ、生きているセルにセット<br>
+&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;sx&nbsp;*&nbsp;sy&nbsp;*&nbsp;density;&nbsp;i++)&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;world[(int)random(sx)][(int)random(sy)][1]&nbsp;=&nbsp;1;&nbsp;<br>
+&nbsp;&nbsp;}&nbsp;<br>
+<br>
+}&nbsp;<br>
+&nbsp;<br>
+&nbsp;//メインループ<br>
+void&nbsp;draw()&nbsp;<br>
+{&nbsp;<br>
+&nbsp;&nbsp;background(0);&nbsp;//背景を黒にセット<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//描画ループ<br>
+&nbsp;&nbsp;//world[x][y][1]の状態を初期化しながら<br>
+&nbsp;&nbsp;//world[x][y][0]にworld[x][y][1]の状態をコピー<br>
+&nbsp;&nbsp;//但し、world[x][y][1]は特に更新されない場合もあるので<br>
+&nbsp;&nbsp;//その場合を区別するために、1,0,-1の3つの状態使う<br>
+&nbsp;&nbsp;for&nbsp;(int&nbsp;x&nbsp;=&nbsp;0;&nbsp;x&nbsp;&lt;&nbsp;sx;&nbsp;x=x+1)&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;y&nbsp;=&nbsp;0;&nbsp;y&nbsp;&lt;&nbsp;sy;&nbsp;y=y+1)&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;((world[x][y][1]&nbsp;==&nbsp;1)&nbsp;||&nbsp;(world[x][y][1]&nbsp;==&nbsp;0&nbsp;&amp;&amp;&nbsp;world[x][y][0]&nbsp;==&nbsp;1))&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[x][y][0]&nbsp;=&nbsp;1;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;point(x,&nbsp;y);&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(world[x][y][1]&nbsp;==&nbsp;-1)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[x][y][0]&nbsp;=&nbsp;0;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[x][y][1]&nbsp;=&nbsp;0;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>
+&nbsp;&nbsp;}&nbsp;<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;//&nbsp;各セルの生死判定　<br>
+&nbsp;&nbsp;for&nbsp;(int&nbsp;x&nbsp;=&nbsp;0;&nbsp;x&nbsp;&lt;&nbsp;sx;&nbsp;x=x+1)&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;y&nbsp;=&nbsp;0;&nbsp;y&nbsp;&lt;&nbsp;sy;&nbsp;y=y+1)&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//周囲のセルの生死状態をカウントする<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;count&nbsp;=&nbsp;neighbors(x,&nbsp;y);&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//もし自分自身が死んでいて、周囲のセル3つが生きていたら復活する<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(count&nbsp;==&nbsp;3&nbsp;&amp;&amp;&nbsp;world[x][y][0]&nbsp;==&nbsp;0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[x][y][1]&nbsp;=&nbsp;1;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//もし自分自身が生きていて、周囲のセルが1個以下、あるいは4個以上の<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//場合は、自分は死ぬ<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;((count&nbsp;&lt;&nbsp;2&nbsp;||&nbsp;count&nbsp;&gt;&nbsp;3)&nbsp;&amp;&amp;&nbsp;world[x][y][0]&nbsp;==&nbsp;1)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[x][y][1]&nbsp;=&nbsp;-1;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br>
+&nbsp;&nbsp;}&nbsp;<br>
+}&nbsp;<br>
+&nbsp;<br>
+//周囲のセルの生死を判定する関数<br>
+int&nbsp;neighbors(int&nbsp;x,&nbsp;int&nbsp;y)&nbsp;<br>
+{&nbsp;<br>
+&nbsp;&nbsp;return&nbsp;world[(x&nbsp;+&nbsp;1)&nbsp;%&nbsp;sx][y][0]&nbsp;+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[x][(y&nbsp;+&nbsp;1)&nbsp;%&nbsp;sy][0]&nbsp;+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[(x&nbsp;+&nbsp;sx&nbsp;-&nbsp;1)&nbsp;%&nbsp;sx][y][0]&nbsp;+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[x][(y&nbsp;+&nbsp;sy&nbsp;-&nbsp;1)&nbsp;%&nbsp;sy][0]&nbsp;+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[(x&nbsp;+&nbsp;1)&nbsp;%&nbsp;sx][(y&nbsp;+&nbsp;1)&nbsp;%&nbsp;sy][0]&nbsp;+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[(x&nbsp;+&nbsp;sx&nbsp;-&nbsp;1)&nbsp;%&nbsp;sx][(y&nbsp;+&nbsp;1)&nbsp;%&nbsp;sy][0]&nbsp;+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[(x&nbsp;+&nbsp;sx&nbsp;-&nbsp;1)&nbsp;%&nbsp;sx][(y&nbsp;+&nbsp;sy&nbsp;-&nbsp;1)&nbsp;%&nbsp;sy][0]&nbsp;+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world[(x&nbsp;+&nbsp;1)&nbsp;%&nbsp;sx][(y&nbsp;+&nbsp;sy&nbsp;-&nbsp;1)&nbsp;%&nbsp;sy][0];&nbsp;<br>
+}&nbsp;<br>
+
+</span><br>
+    </div></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><br>
+<br>
+
+
+</p>
+</body>
+</html>
