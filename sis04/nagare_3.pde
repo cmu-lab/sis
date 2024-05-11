@@ -7,7 +7,7 @@ int[][] X = new int[Length][2]; //道路状況を管理する配列
 Car[] myCar = new Car[Max_Car]; //車のクラスを定義
 
 void setup() {
-  size(Length,100); //Length x 100 の窓を準備
+  size(800,100); //Length x 100 の窓を準備
   background(0);
 
   frameRate(20); //フレームレートは20くらいに設定すると滑らか。私のパソコンでは
