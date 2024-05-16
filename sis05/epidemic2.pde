@@ -13,7 +13,7 @@ Human[] UofT_Human = new Human[Max_Human];
 
 //初期化部
 void setup() {
-  size(Length,Length+100);
+  size(500,500+100); // Length, Length+100
   background(0);
   frameRate(30);
 
