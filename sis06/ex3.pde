@@ -9,7 +9,7 @@ Node[] Test_Node = new Node[Max_Node];
 
 //初期化部
 void setup() {
-  size(Length*2,Length);
+  size(1000,500); // Length * 2, Length
   background(0);
   smooth();
   frameRate(1); //フレームレートはゆっくりに設定

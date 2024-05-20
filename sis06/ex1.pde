@@ -1,92 +1,89 @@
-//グラフ描画のサンプルプログラム
+// WS sample program by Hajime Nobuhara
+//
 
-int Length = 400;
-int Max_Node = 200;
-int Node_number = 2;
+int W_size = 400; // screen size
+int N = 20; // Node number
+int Loop = 20; // Loop number
+Node[] WS_Node = new Node[N];
+int R;
 
-Node[] Test_Node = new Node[Max_Node];
-
-//初期化部
 void setup() {
-  size(Length,Length);
+  size(400, 400); // W_size, W_size
   background(0);
   smooth();
-  frameRate(1); //フレームレートはゆっくりに設定
+  frameRate(1); //フレームレートはゆっくり
 
-  //Node_numberの数だけノードを配置します
-  for(int i=0;i&lt;Node_number;i++){
-    int k1 = int(random(Length));
-    int k2 = int(random(Length));
-    Test_Node[i] = new Node(k1,k2);
-    Test_Node[i].link_number = Node_number;
-    for(int j=0;j&lt;Node_number;j++){
-      Test_Node[i].link[j] = j;
+  //nodes
+  for(int i=0; i<N; i++) {
+    int k1 = int(W_size/2 + W_size/2.5*cos(2*PI*i/N));
+    int k2 = int(W_size/2 - W_size/2.5*sin(2*PI*i/N));
+    WS_Node[i] = new Node(k1,k2);
+    WS_Node[i].link_number = 2;
+    for(int j=0; j<2; j++) {
+      WS_Node[i].link[j] = (i+j+1)%N;
+    }
+  }
+}
+
+
+//main
+void draw() {
+
+  //reset
+  fill(0);
+  rect(0, 0, W_size, W_size);
+
+  //draw links
+  for(int j=0; j < N; j++) {
+    for(int i=0; i< WS_Node[j].link_number; i++) {
+      stroke(255);
+      line(WS_Node[j].xpos, WS_Node[j].ypos, WS_Node[WS_Node[j].link[i]].xpos, WS_Node[WS_Node[j].link[i]].ypos);
+    }
+  }
+
+  //draw nodes
+  fill(255);
+  textAlign(CENTER,CENTER);
+  for(int j=0; j < N; j++) {
+    WS_Node[j].draw();
+    fill(255);
+    text(j,int(W_size/2 + W_size/2.3*cos(2*PI*j/N)),int(W_size/2 - W_size/2.3*sin(2*PI*j/N)));
+  }
+
+
+
+  //connect a link to another node
+  R = int(random(N));
+  WS_Node[R].link[int(random(2))] = (R + int(random(N/6,N/2)))%N;
+
+
+  if(frameCount%Loop==0) {
+    for(int i=0; i<N; i++) {
+      for(int j=0; j<2; j++) {
+        WS_Node[i].link[j] = (j+1+i)%N;
+      }
     }
   }
 
 }
 
 
-//メイン部分
-void draw() {
+class Node {
 
-    Node_number++; //ノードを1個ずつ増やしてゆきます
-
-    //新規に発生したノードの位置はランダムに設定
-    int k1 = int(random(Length));
-    int k2 = int(random(Length));
-    Test_Node[Node_number-1] = new Node(k1,k2);
-
-    //新規に発生させたノードの次数をランダムに設定します
-    Test_Node[Node_number-1].link_number = int(random(Node_number));
-
-    for(int i=0; i&lt; Test_Node[Node_number -1].link_number; i++){
-      //上記で設定した次数に基づき、リンク相手をランダムに選びます
-      Test_Node[Node_number-1].link[i] = int(random(Node_number));
-    }
-
-  fadeToWhite();
-
-  //ノードを描画します
-   for(int j=0; j &lt; Node_number; j++){
-       Test_Node[j].draw();
-    }
-
-  //リンク（エッジ）を描画します
-   for(int j=0; j &lt; Node_number; j++){
-     for(int i=0; i&lt; Test_Node[j].link_number; i++){
-       stroke(255);
-       line(Test_Node[j].xpos,Test_Node[j].ypos, Test_Node[Test_Node[j].link[i]].xpos, Test_Node[Test_Node[j].link[i]].ypos);
-    }
-   }
-
-}
-
-//ノードのクラス
-class Node
-{
-
-  int xpos; //x座標
-  int ypos; //y座標
-  int link_number; //当該ノードの次数
-  int [] link = new int[Max_Node]; //リンクの相手先情報を格納
-
+  int xpos;
+  int ypos;
+  int link_number;
+  int [] link = new int[N];
 
   Node(int xp, int yp) {
     xpos = xp;
     ypos = yp;
   }
 
-  void draw () {
-      noStroke();
-      fill(0,0,200);
-      ellipse(xpos,ypos,15,15);
+  void draw() {
+    noStroke();
+    fill(0,0,255);
+    ellipse(xpos,ypos,15,15);
   }
-}
 
-
-void fadeToWhite(){
-  rectMode(CORNER);
-  fill(0,0,0,50);
-  rect(0,0,width,height);
 }

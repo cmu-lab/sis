@@ -8,7 +8,7 @@ Node[] WS_Node = new Node[N];
 int R;
 
 void setup() {
-  size(W_size, W_size);
+  size(400, 400); // W_size, W_size
   background(0);
   smooth();
   frameRate(1); //フレームレートはゆっくり
