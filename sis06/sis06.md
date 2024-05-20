@@ -40,7 +40,7 @@
 
 以下に、WSモデルのサンプルプログラムを用意しました。ノードが20のものです。このプログラムを読み解くとともに、つぎの課題を実行してください。
 
-<p align="center"><a href="ex2.html" download="ex2.html" target="_blank">WSモデルのプログラム</a></p>
+<p align="center"><a href="ex2.pde" download="ex2.pde" target="_blank">WSモデルのプログラム</a></p>
 
 
 
@@ -58,7 +58,7 @@
 
 
 
-<p align="center"><a href="./graph_sample/ex3.html">BAモデルのプログラム</a></p>
+<p align="center"><a href="ex3.pde" download="ex3.pde" target="_blank">BAモデルのプログラム</a></p>
 
 
 
