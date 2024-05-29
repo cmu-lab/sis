@@ -1,0 +1,265 @@
+<html>
+<head>
+	<title>D:\Processing\complex08\Multi-agent\human\human.pde</title>
+	<style type="text/css">
+		div.source {
+			font-size: 100%;
+			background-color: #000000;
+			color: #FFFFFF
+		}
+		span.prepro  {color: #CC55FF}
+		span.comment {color: #00FF00}
+		span.funcdef {color: #0000FF}
+		span.func    {color: #FF0000}
+		span.keywd   {color: #FF7777}
+		span.macro   {color: #00FFFF}
+		span.dquote  {color: #FFFF00}
+		span.squote  {color: #FF00FF}
+		span.number  {color: #FF8800}
+	</style>
+</head>
+<body>
+<div class="source">
+<pre>
+<span class="comment"><i>//マルチエージェントシミュレータ</i></span>
+<span class="comment"><i>//基本プログラム</i></span>
+<span class="comment"><i>// by Hajime Nobuhara</i></span>
+
+<span class="keywd"><b>int</b></span> Length = <span class="number">400</span>; <span class="comment"><i>//空間管理配列の大きさ</i></span>
+<span class="keywd"><b>int</b></span> Max_Human = <span class="number">20</span>; <span class="comment"><i>//シミュレータに登場させる人間の数</i></span>
+
+<span class="comment"><i>//空間管理配列を準備</i></span>
+<span class="keywd"><b>int</b></span>[][] MAP = new <span class="keywd"><b>int</b></span>[Length][Length]; 
+
+<span class="comment"><i>//人間の配列を準備</i></span>
+Human_class[] Human = new Human_class[Max_Human];
+
+
+<span class="comment"><i>//初期化部</i></span>
+<span class="funcdef">void setup() {</span>
+  colorMode(HSB);
+  size(Length, Length);
+  background(<span class="number">0</span>);
+  frameRate(<span class="number">30</span>);
+
+  <span class="comment"><i>//ここで人間を生成</i></span>
+  <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> i=<span class="number">0</span>; i &lt; Max_Human; i++){
+     <span class="keywd"><b>int</b></span> k1 = <span class="number">1</span>; <span class="comment"><i>//生きている人間の状態を1、死んでいる場合は 0</i></span>
+     <span class="keywd"><b>int</b></span> k2 = <span class="keywd"><b>int</b></span>(random(width)); <span class="comment"><i>//登場する初期 x座標</i></span>
+     <span class="keywd"><b>int</b></span> k3 = <span class="keywd"><b>int</b></span>(random(height)); <span class="comment"><i>//登場する初期 y座標</i></span>
+     <span class="keywd"><b>int</b></span> k4 = <span class="keywd"><b>int</b></span>(random(<span class="number">5</span>)); <span class="comment"><i>//人間の動作方向をランダムにセット</i></span>
+     <span class="keywd"><b>int</b></span> k5 = <span class="keywd"><b>int</b></span>(random(<span class="number">5</span>)); <span class="comment"><i>//人間の体内時計を0～4の間でセット</i></span>
+     Human[i] = new Human_class(k1,k2,k3,k4,k5);
+  }
+  
+  <span class="comment"><i>//空間の状態管理配列を初期化</i></span>
+  <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> i=<span class="number">0</span>; i&lt; Length; i++){
+    <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> j=<span class="number">0</span>; j&lt; Length; j++){
+      MAP[i][j] = <span class="number">0</span>;
+    }
+  }
+}
+
+
+
+<span class="comment"><i>//</i></span>
+<span class="comment"><i>// メインループ</i></span>
+<span class="comment"><i>//</i></span>
+
+<span class="funcdef">void draw() {</span>
+ 
+ <span class="comment"><i>//背景を描画</i></span>
+ makeground();
+
+ <span class="comment"><i>//人間を描画</i></span>
+ <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> j=<span class="number">0</span>; j &lt; Max_Human; j++){
+     Human[j].timer ++;  <span class="comment"><i>//人間の体内時計を1つカウントアップ</i></span>
+     <span class="comment"><i>//人間を描画</i></span>
+     <span class="comment"><i>//アニメーションを使っており、体内時計に合わせて動く</i></span>
+     Human[j].draw(); 
+  }
+
+  <span class="comment"><i>//人間を動かす</i></span>
+  <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> j=<span class="number">0</span>; j &lt; Max_Human; j++){
+     Human[j].drive();
+  }
+  
+  <span class="comment"><i>//お互いの衝突判定</i></span>
+  <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> j=<span class="number">0</span>; j &lt; Max_Human; j++){
+     Human[j].coll();
+  }
+  
+}
+
+
+
+<span class="comment"><i>//</i></span>
+<span class="comment"><i>// 人間のクラスを定義</i></span>
+<span class="comment"><i>//</i></span>
+
+class Human_class
+{
+
+  <span class="keywd"><b>int</b></span> xpos; <span class="comment"><i>//x座標</i></span>
+  <span class="keywd"><b>int</b></span> ypos; <span class="comment"><i>//y座標</i></span>
+  <span class="keywd"><b>int</b></span> type; <span class="comment"><i>//人間の状態</i></span>
+  <span class="keywd"><b>int</b></span> direction; <span class="comment"><i>//人間の動作方向</i></span>
+  <span class="keywd"><b>int</b></span> timer; <span class="comment"><i>//体内時計</i></span>
+    
+  Human_class(<span class="keywd"><b>int</b></span> c, <span class="keywd"><b>int</b></span> xp, <span class="keywd"><b>int</b></span> yp, <span class="keywd"><b>int</b></span> dirt, <span class="keywd"><b>int</b></span> t) {
+    xpos = xp;
+    ypos = yp;
+    type = c;
+    direction = dirt;
+    timer = t;
+  }
+
+
+
+ <span class="comment"><i>//人間を描画する部分</i></span>
+  <span class="keywd"><b>void</b></span> draw () {
+    <span class="comment"><i>//頭部を描画しちゃいましょう</i></span>
+    smooth();
+    noStroke();
+    
+    <span class="comment"><i>//色はグリーン</i></span>
+    fill(<span class="number">100</span>,<span class="number">255</span>,<span class="number">255</span>);
+       
+    <span class="comment"><i>//アニメーションは全部で5種類準備</i></span>
+    <span class="comment"><i>//体内時間を5で割って、その余りに応じて</i></span>
+    <span class="comment"><i>//表示するアニメを決定</i></span>
+    
+    <span class="keywd"><b>int</b></span> <span class="func"><b>time</b></span> = timer % <span class="number">5</span>;
+    <span class="keywd"><b>switch</b></span>(<span class="func"><b>time</b></span>){
+      
+      <span class="keywd"><b>case</b></span> <span class="number">0</span>:
+        ellipse(xpos,ypos,<span class="number">6</span>,<span class="number">6</span>);
+        rect(xpos-<span class="number">3</span>,ypos+<span class="number">3</span>,<span class="number">6</span>,<span class="number">5</span>); <span class="comment"><i>//胴体</i></span>
+        rect(xpos-<span class="number">3</span>,ypos+<span class="number">8</span>,<span class="number">3</span>,<span class="number">5</span>); <span class="comment"><i>//左足</i></span>
+        rect(xpos-<span class="number">4</span>,ypos+<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>); <span class="comment"><i>//左腕</i></span>
+        rect(xpos+<span class="number">2</span>,ypos+<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>); <span class="comment"><i>//右腕</i></span>
+    
+        <span class="keywd"><b>break</b></span>;
+      <span class="keywd"><b>case</b></span> <span class="number">1</span>:
+        ellipse(xpos,ypos,<span class="number">6</span>,<span class="number">6</span>);
+        rect(xpos-<span class="number">3</span>,ypos+<span class="number">3</span>,<span class="number">6</span>,<span class="number">5</span>);
+        rect(xpos-<span class="number">3</span>,ypos+<span class="number">8</span>,<span class="number">3</span>,<span class="number">4</span>);
+        rect(xpos,ypos+<span class="number">8</span>,<span class="number">3</span>,<span class="number">1</span>);        
+        <span class="keywd"><b>break</b></span>;
+       <span class="keywd"><b>case</b></span> <span class="number">2</span>:
+        ellipse(xpos,ypos,<span class="number">6</span>,<span class="number">6</span>);
+        rect(xpos-<span class="number">3</span>,ypos+<span class="number">3</span>,<span class="number">6</span>,<span class="number">5</span>);
+        rect(xpos-<span class="number">3</span>,ypos+<span class="number">8</span>,<span class="number">3</span>,<span class="number">3</span>);
+        rect(xpos,ypos+<span class="number">8</span>,<span class="number">3</span>,<span class="number">3</span>);
+        <span class="keywd"><b>break</b></span>;
+        <span class="keywd"><b>case</b></span> <span class="number">3</span>:
+        ellipse(xpos,ypos,<span class="number">6</span>,<span class="number">6</span>);
+        rect(xpos-<span class="number">3</span>,ypos+<span class="number">3</span>,<span class="number">6</span>,<span class="number">5</span>);
+        rect(xpos-<span class="number">3</span>,ypos+<span class="number">8</span>,<span class="number">3</span>,<span class="number">1</span>);
+        rect(xpos,ypos+<span class="number">8</span>,<span class="number">3</span>,<span class="number">4</span>);
+        <span class="keywd"><b>break</b></span>;
+        <span class="keywd"><b>case</b></span> <span class="number">4</span>:
+        
+        <span class="comment"><i>//5枚目</i></span>
+        ellipse(xpos,ypos,<span class="number">6</span>,<span class="number">6</span>);
+        rect(xpos-<span class="number">3</span>,ypos+<span class="number">3</span>,<span class="number">6</span>,<span class="number">5</span>);
+        rect(xpos,ypos+<span class="number">8</span>,<span class="number">3</span>,<span class="number">5</span>);
+        rect(xpos-<span class="number">4</span>,ypos+<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>); 
+        rect(xpos+<span class="number">2</span>,ypos+<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>); 
+        <span class="keywd"><b>break</b></span>;
+        
+    }
+  }
+
+
+<span class="comment"><i>//人間を動かす部分</i></span>
+  <span class="keywd"><b>void</b></span> drive () {
+    
+    <span class="comment"><i>//確率5%で動く方向を変更</i></span>
+    <span class="keywd"><b>if</b></span>(random(<span class="number">100</span>) &lt; <span class="number">5</span>){
+      <span class="comment"><i>//5種類の動きをランダムにセット</i></span>
+      direction = <span class="keywd"><b>int</b></span>(random(<span class="number">5</span>));
+    }
+    
+    <span class="comment"><i>//動く方向4方向 + 何も動かない</i></span>
+    <span class="comment"><i>//合計5種類を準備</i></span>
+    
+    <span class="keywd"><b>switch</b></span>(direction){
+      <span class="keywd"><b>case</b></span> <span class="number">0</span>:
+        <span class="keywd"><b>break</b></span>; <span class="comment"><i>//何も動かず</i></span>
+    
+      <span class="keywd"><b>case</b></span> <span class="number">1</span>:
+          MAP[xpos][ypos] = <span class="number">0</span>;
+          xpos = (xpos + <span class="number">1</span> + width) % width; <span class="comment"><i>//右に動かす</i></span>
+          <span class="keywd"><b>break</b></span>;
+          
+      <span class="keywd"><b>case</b></span> <span class="number">2</span>:
+          MAP[xpos][ypos] = <span class="number">0</span>;
+          xpos = (xpos - <span class="number">1</span> + width) % width; <span class="comment"><i>//左に動かす</i></span>
+          <span class="keywd"><b>break</b></span>;
+          
+      <span class="keywd"><b>case</b></span> <span class="number">3</span>:
+          MAP[xpos][ypos] = <span class="number">0</span>;
+          ypos = (ypos + <span class="number">1</span> + height) % height; <span class="comment"><i>//下に動かす</i></span>
+          <span class="keywd"><b>break</b></span>;
+      
+     <span class="keywd"><b>case</b></span> <span class="number">4</span>:
+          MAP[xpos][ypos] = <span class="number">0</span>;
+          ypos = (ypos - <span class="number">1</span> + height) % height; <span class="comment"><i>//上に動かす</i></span>
+          <span class="keywd"><b>break</b></span>;
+    }
+     
+   
+   <span class="comment"><i>//自分の移動先に存在を代入</i></span>
+     MAP[xpos][ypos] = type;  
+    
+  }
+  
+  
+  <span class="comment"><i>//衝突の判定</i></span>
+  <span class="keywd"><b>void</b></span> coll() {
+    
+    <span class="comment"><i>//自分の周囲 10x10 の範囲を探索して、他人がいたら避けるようにする</i></span>
+    <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> i = -<span class="number">10</span>; i &lt; <span class="number">10</span>; i++){
+      <span class="keywd"><b>for</b></span>(<span class="keywd"><b>int</b></span> j = -<span class="number">10</span>; j &lt; <span class="number">10</span>; j++){
+        <span class="keywd"><b>if</b></span> (MAP[(xpos+i+width) % width][(ypos+j+height) % height] == <span class="number">1</span>){
+          
+          MAP[xpos][ypos] = <span class="number">0</span>;
+          
+          <span class="comment"><i>//相手から2画素分逃げるようにする</i></span>
+          <span class="keywd"><b>if</b></span>(i &lt; <span class="number">0</span>){
+            xpos = (xpos + <span class="number">2</span> + width) % width; 
+          }
+          <span class="keywd"><b>if</b></span>(i &gt; <span class="number">0</span>){
+            xpos = (xpos - <span class="number">2</span> + width) % width;
+          }
+          
+          <span class="comment"><i>//相手から2画素分逃げるようにする</i></span>
+          <span class="keywd"><b>if</b></span>(j &lt; <span class="number">0</span>){
+            ypos = (ypos + <span class="number">2</span> + height) % height;
+          }
+          <span class="keywd"><b>if</b></span>(j &gt; <span class="number">0</span>){
+            ypos = (ypos - <span class="number">2</span> + height) % height;
+          }
+          
+          MAP[xpos][ypos] = type; 
+          
+       
+        }
+      }
+    }
+  }
+  
+}
+
+
+<span class="comment"><i>//背景を描画</i></span>
+<span class="funcdef">void makeground(){</span>
+  fill(<span class="number">128</span>,<span class="number">100</span>,<span class="number">100</span>); <span class="comment"><i>//ちょっと薄めのグリーン</i></span>
+  rect(<span class="number">0</span>,<span class="number">0</span>,width,height);  
+}
+
+</pre>
+</div>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>第7回のページ</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.style1 {font-family: "ＭＳ ゴシック", "Osaka−等幅"}
+-->
+</style>
+</head>
+<style type="text/css">
+<!--
+span{ line-height: 150%; } 
+-->
+div.contentsbox
+{
+	border-style: solid;
+	border-width: 1px 2px 2px 1px;
+	border-color: #c0c0c0 #808080 #808080 #c0c0c0;
+	padding: 0.5em;
+	width: 400px;
+}
+.style22 {color: #FF0000}
+.style23 {color: #0000FF}
+.style25 {color: #0000FF; font-weight: bold; }
+</style>
+
+<body>
+
+<div id="head">
+  <h1 align="center" class="style1"><span class="contentsbox">第7回： マルチエージェント　</span></h1>
+</div>
+<!-- head -->
+
+<div id="main">
+<table width="600" border="1" align="center">
+  <tr>
+    <td><blockquote>
+      <p>&nbsp;</p>
+      <p><strong>■重要■レポートの提出方法について</strong></p>
+      <p>今年度はManabaを使って提出してもらいます．</p>
+      <p>第7回のレポート提出期限は <span class="style22">2023年06月19日 15:00</span> まで。</p>
+      <p>必修課題は全部で2つ（演習1と演習2）。ボーナス課題は1つ（演習3）</p>
+      <blockquote>
+        <p>演習1.マルチエージェントシミュレータ (5-10点)</p>
+        <p>演習2. boidシミュレータ (7点)        </p>
+        <p>ボーナス課題1. TD学習の実装 (+10点)      </p>
+      </blockquote>
+      <p><strong>(for English) ■Important!■ How to submit your report*</strong></p>
+      <p>You should submit your report by using 'Manaba' system, and the deadline of second report will be 2023/06/19 15:00. </p>
+      <p>You must solve the exercises (ex.1and  2), and if possible, please solve the supplemental problems ex 3. </p>
+      <blockquote>
+        <p>ex.1: implementation of multi-agents simulator (5-10 points)</p>
+        <p>ex.2: implementation of boids simulator (7 points)</p>
+        <p>ex. 3: improvement of TD learning (+10 points)</p>
+      </blockquote>
+      <p class="style23">&nbsp;</p>
+      </blockquote></td>
+  </tr>
+
+<br>
+
+  <tr>
+    <td><blockquote>
+      <p>&nbsp;</p>
+      <p><strong>■授業の資料■</strong> (Lecture Materials)</p>
+      
+      <p align="center"><u><a href="SIS_7th_20230605.pdf">第7回： マルチエージェント　(PDFファイル)</a></u></p>
+      <p align="center"><a href="SIS_7th_20230605.pdf">7th: multi-agents (PDF file)</a></p>
+      <p align="center">&nbsp;</p>
+      <p>&nbsp;</p>
+    </blockquote></td>
+  </tr>
+</table>
+
+
+  <div align="center"></div>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">1. はじめに (introduction)</h2>
+ </div>
+</div>
+<br>
+<br>
+
+ <p>&nbsp;</p>
+ <blockquote>
+   <p>今週はProcessingを使って、人工社会シミュレータを実現します。最初は、ごく簡単な機能を持つエージェン  トをシミュレータ内に配置します。このシミュレータそしてエージェントに対し、時間の概念や捕食の概念、さらには生死の概念を導入し、どんどん複雑な人工社会を構成してゆきます。</p>
+   <p>今回のシミュレータでは、個々のエージェントのふるまいが、  全体の社会環境に対して影響し、さらに社会環境から個々のエージェントに対し影響が及ぶという、ミクロマクロループの概念を明確に示してくれると思います。しっ  かりと、その様子を学び、自分なりの理解に向けて、がんばってください。</p>
+   <p>&nbsp;</p>
+   <p>Using the Processing language, we will try to realize artificial society simulator in this week. At first, we will implement very agents with very simple functions, in the simulator. In this simulator, we can see the concept of micro-macro loop introduced in the class, the actual results. </p>
+ </blockquote>
+ <p>&nbsp;</p>
+ <p><br>
+ </p>
+ <div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">2. 人工社会シミュレータ　イチロー君: multi-agents simulator ichiro-kun</h2>
+ </div>
+</div>
+  
+  <p><br>
+    <br>
+</p>
+  <blockquote>
+    <p align="left">人工社会シミュレータ 「イチロー君」では、画面内にエージェントを複数登場させ、それぞれが互いにぶつからないように動き回る機能を搭載している。このシミュレータが、今回のコアになるので、よく理解してください。</p>
+    <p align="left">In the multi-agents simulator, each agant can move according to own observation, that is, they can avoid the collision of other agents. This simulator will be the core program of this week. </p>
+    <p>&nbsp;</p>
+  </blockquote>
+  <p align="center"><a href="Multi-agent/human1/human1.html"><strong>■<span class="style1 style1">人工社会シミュレータ　イチロー君</span>■</strong></a></p>
+  <p align="center">(multi-agents simulator &quot;ichiro-kun&quot;)</p>
+  <p align="center">&nbsp;</p>
+  <p align="center"><img src="Multi-agent/human1/human_1.png" width="400" height="400"></p>
+  <p align="center">人工社会シミュレータ イチロー君 実行の様子</p>
+  <p align="center">(multi-agents simulator results)</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><blockquote>
+          <p>&nbsp;</p>
+        <p><strong>■練習1■</strong></p>
+        <p align="left">1-1. エージェントの数を増やしてみましょう。</p>
+        <p align="left">1-2. エージェントの色や形状を変化させる、など、味付けをしてみましょう。</p>
+        <p align="left">■preliminary 1■</p>
+        <p align="left">1-1. Increase the number of agents of the simulator</p>
+        <p align="left">1-2. Modify the color, shape of agents of the simulator        </p>
+        <p align="left">&nbsp;</p>
+      </blockquote></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  
+  <div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">3. 時間の概念および生死の概念の導入 (concept of life-time)</h2>
+ </div>
+</div>
+  
+  
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <blockquote>
+    <p>さきほど作成したイチロー君に、時間の概念と生死の概念を導入した「ジロー君」に挑戦してみましょう。</p>
+    <p>Please try to add the life time of agents to the simulator &quot;ichiro-kun&quot;, that is, we call the improved simulator as &quot;jiro-kun&quot;. </p>
+  </blockquote>
+  <p align="center"><a href="Multi-agent/human2/human2.html"><strong>■<span class="style1 style1">人工社会シミュレータ　ジロー君</span>■</strong></a></p>
+  <p align="center">(multi-agents simulator &quot;jiro-kun&quot;)</p>
+  <p>&nbsp;</p>
+  <p align="center"><img src="Multi-agent/human2/human2.png" width="400" height="400"></p>
+  <p>&nbsp;</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><blockquote>
+          <p>&nbsp;</p>
+        <p><strong>■練習2■</strong></p>
+        <p align="left">2-1. 各エージェントの体力の減少とともに、移動スピードが遅くなるように工夫してみよう。</p>
+        <p align="left">■preliminary 2■</p>
+        <p align="left">2 Please implement as follows: the shorter each agent life is, the slower the each agent moves. </p>
+        <p align="left">&nbsp;</p>
+      </blockquote></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  
+<div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">4. 捕食の概念の導入 (food problem in the simulator)</h2>
+ </div>
+</div>
+  
+  
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <blockquote>
+    <p>ジロー君に、捕食（食べ物を獲得する機能）の概念を導入した「サブロー君」に挑戦してみましょう。</p>
+    <p class="style22">※各エージェントの動きがぎこちないかもしれません。自分なりにチューニングしてみてください。</p>
+    Please try to add the function that each agent take the foods to the simulator &quot;jiro-kun&quot;, that is, we call the improved simulator as &quot;saburo-kun&quot;. 
+  </blockquote>
+  <p align="center"><a href="Multi-agent/human3/human3.html"><strong>■<span class="style1 style1">人工社会シミュレータ　サブロー君</span>■</strong></a></p>
+  <p align="center">(multi-agents simulator &quot;saburo-kun&quot;)</p>
+  <p align="center"><img src="Multi-agent/human3/human3.png" width="400" height="400"></p>
+  <p>&nbsp;</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><blockquote>
+          <p>&nbsp;</p>
+        <p><strong>■練習3■</strong></p>
+        <p align="left">3-1. 食べ物の発生頻度を変化させてみましょう。</p>
+        <p align="left">3-2. 食べ物を獲得した場合の体力の上昇を調整してみましょう。</p>
+        <p align="left">■preliminary 3■</p>
+        <p align="left">3-1. Please implement as follows: the shorter each agent life is, the slower the each agent moves.</p>
+        <p align="left">3-1. Please implement as follows: the shorter each agent life is, the slower the each agent moves.</p>
+        <p align="left">&nbsp;</p>
+      </blockquote></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  
+<div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">5. 課題その1　(Ex. 1)</h2>
+ </div>
+</div>
+  
+  
+  
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>さて、これまでのイチロー君から、サブロー君までのプログラムを参考に、以下のうち、どれかの機能を搭載したシミュレーションを作ってください。</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><blockquote>
+          <p>&nbsp;</p>
+        <p><strong>■課題1■</strong> <span class="style23"><strong>[5-10点]</strong></span>　どれか1つでよいです。もちろんすべて満たすとうれしいですね。</p>
+        <p align="left">条件1. 季節（春夏秋冬）の概念を導入し、季節によって食物の発生頻度を変化させる機能</p>
+        <p align="left">条件2. 各エージェントの体力が、ある一定値以上になったら増殖する機能</p>
+        <p align="left">条件3. 2種類のエージェントを存在させ、異なるエージェント同士がケンカし、体力が減少する機能</p>
+        <p align="left" class="style22">条件を複数満たした場合には、加点しますので、どんどん挑戦してください。</p>
+        <p align="left">※画面をキャプチャしたもの、ソースコードをあわせて、提出してください。もちろん、考察もつけてください。</p>
+        <p align="left">■Ex.1■[5-10 points] Please make the simulator that satisfies the following conditions (only 1 condition is OK, I mean, do not need to satisfy all conditions)</p>
+        <p align="left">Condition1. The similator has the concept of seasons (spring, summer, fall and winter), and it can vary the frequency of occurrence of food by season.</p>
+        <p align="left">Condition2. One agent will be divided into two agent, when the life degree is larger than the certain level. </p>
+        <p align="left">Condition3. Prepare two types of agents in this simulator, and different types of agents fight each other, and decrease the life-time, due to the confliction.        </p>
+        <p align="left">&nbsp;</p>
+        </blockquote></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <p align="center"><img src="Multi-agent/sample.png" width="400" height="400"></p>
+  <p align="center">条件1〜3を満たしたシミュレータの結果画面</p>
+  <blockquote>
+    <p align="left">各エージェントに、たとえば、同じ種族ならば助け合う機能、食物を保存する機能、味方同士で集まる機能、などなど、本当に考えればキリがないくらい面白い作りこみが可能だと思います。また、種族を同じシミュレータ内に共存させることが非常に難しいことも、きっとわかってもらえると思います。ぜひ、自主制作課題などで、これらのシミュレータを発展させたものなどに挑戦してみてください。</p>
+  </blockquote>
+  <p align="left">&nbsp;</p>
+  <p align="left">&nbsp;</p>
+  <div id="right"><!-- 本文 -->
+    <div class="title">
+    <h2 class="style1 style1">6. 課題その2 (ex. 2)</h2>
+ </div>
+</div>
+  
+  
+  <p align="left">&nbsp;</p>
+  <p align="left">&nbsp;</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><blockquote>
+        <p><strong>■課題2■</strong> <span class="style25">[5点]</span>　<br>
+          <br>
+          ここにBoids（Flocking）という動物の群れの動きを参考にして，i)周りに方向を合わせる　ii)ある一定以上周りと距離を取る　iii)群れを見つけるとその群れに加わるという3つのルールに従い，周りのエージェントの状態によって自分の行動を決めるというマルチエージェントの一種があります。</p>
+        <p>http://processing.org/examples/flocking.html</p>
+        <p>このシステムに以下のいずれかの機能を追加してください<br>
+          1)目標地点に向かって動く，とどまるような機能(2点）<br>
+          2)壁などの障害物を設置しそれを避けるようにする機能（3点）<br>
+          3)その他自分の提案した機能（2点）</p>
+        <p>すべて実装してもらってもかまいません。実装した機能に関しての詳しい説明および実行結果の画面をキャプチャして、wordファイルにまとめて提出してください。</p>
+        <p>■Ex. 2■ [5 points]</p>
+        <p>Boids (Flocking) is an example of emergent behavior; that is, the complexity of Boids arises from the interaction of individual agents (the boids, in this case) adhering to a set of simple rules. The rules applied in the simplest Boids world are as follows:</p>
+        <p>separation: steer to avoid crowding local flockmates<br>
+          alignment: steer towards the average heading of local flockmates<br>
+          cohesion: steer to move toward the average position (center of mass) of local flockmates</p>
+        <p>http://processing.org/examples/flocking.html</p>
+        <p>Please add any of the following functions in this system </p>
+        <p>1) Moves toward  target sites (2 points) <br>
+          2) The ability to avoid it established the obstacles such as wall (3 points) <br>
+          3) Your original idea (anything is OK) (2 points)</p>
+        <p>You need to submit the word file that includes the captured image of results and explanations. </p>
+        <p>&nbsp;</p>
+      </blockquote></td>
+    </tr>
+  </table>
+  <p align="left">&nbsp;</p>
+  <div id="right"><!-- 本文 -->
+ <div class="title">
+    <h2 class="style1 style1">7. 課題その3（ボーナス）supplemental problems </h2>
+ </div>
+</div>
+  
+  
+  <p align="left">&nbsp;</p>
+  <p align="left">&nbsp;</p>
+  <table width="600" border="1" align="center">
+    <tr>
+      <td><blockquote>
+          <p>&nbsp;</p>
+        <p><strong>■課題3（ボーナス）■</strong> <span class="style25">[10点]</span>　授業中に紹介したTD学習などを使って，実際に迷路を最短距離で走り抜けるプログラムを作りなさい．TD学習に固執する必要はありません．強化学習の要素，すなわち遅延報酬と試行錯誤的な要素が入っていればOKとします．以下の図のような，単純なもので結構です．下の図，そっくりそのまま作る必要はなく，自分自身で適当にアレンジしてもらって結構です．</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p align="center"><img src="images/result.png" width="160" height="160"></p>
+        <p>この迷路は8×8のブロックで構成されていて，青が冒険者，赤がお宝を意味しています．報酬の与え方や学習係数などは皆さん独自に設定してください．皆さんの素晴らしいプログラムを期待しています！</p>
+        <p align="left">Use the TD learning that was introduced in class, please make a program that runs through the shortest distance through the maze actually. You do not need to stick to the TD learning. Element of reinforcement learning, I suppose that is OK element trial-and-error and delay compensation If it contains. It is good, such as shown in the following figure, it is simple. The figure below, there is no need to make in its entirety, it is fine to ask them to arrange appropriately on their own.</p>
+        <p align="left">Blue = your characor, Red = treasure something</p>
+        <p align="left">&nbsp;</p>
+        <p align="left">&nbsp;</p>
+        <p align="left">&nbsp;</p>
+      </blockquote></td>
+    </tr>
+  </table>
+  <p align="left">&nbsp;</p>
+  <p align="left">&nbsp;</p>
+  <hr>
+<p><p>Copyright &copy; Hajime Nobuhara, All Rights Reserved. </p>
+Last modified: 
+               <!-- #BeginDate format:IS1a -->2019-06-19 5:29 am<!-- #EndDate -->
+
+<p>
+  <p>  
+  <p>
+  <p>   
+<p>
+
+
+  
+  
+</p>
+</div>
+</body>
+</html>
+<!-- Copyright (C) Net Mania. All Rights Reserved. http://www.netmania.jp/ -->
