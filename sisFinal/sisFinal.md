@@ -4,6 +4,8 @@
 Office365のOneDriveにファイルをアップロードし、そのダウンロードできるリンク情報をワードファイル／テキストファイルにしてmanabaで提出してもらいます。
 
 <a href="OneDrive.pdf" target="_blank">OneDriveへのアップロード方法等はこちらを見てください（PDF）</a>
+<span style="color: red;">アクセス権に注意してください。過去、アクセスできないリンクを提出する受講生がいました。</span>
+
 
 最終課題提出期限は <span style="color: red;">2024年6月24日（月）15:00まで。</span>
 
